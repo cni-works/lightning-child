@@ -1,0 +1,786 @@
+/*
+Theme Name: Lightning Child
+Description: 無料テーマLightning（現行G3世代）用の開発・カスタマイズ子テーマ
+Author: Oishi Naoto
+Template: lightning
+Version: 0.7.2
+Requires at least: 6.5
+Requires PHP: 7.4
+Text Domain: lightning-child
+*/
+
+/* サイト固有のCSSは、目的ごとにコメントを付けて以下へ追加します。 */
+
+/* 場所別フォント設定。未指定の場所は本文フォントを継承します。 */
+html,
+body {
+	font-family: var(--lightning-child-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.entry-title,
+.page-header-title,
+.sub-section-title,
+.site-footer-title,
+.vk_post_title {
+	font-family: var(--lightning-child-font-title, var(--lightning-child-font-family, sans-serif));
+}
+
+.global-nav,
+.vk-mobile-nav,
+.lightning-child-mobile-fixed-nav {
+	font-family: var(--lightning-child-font-global-nav, var(--lightning-child-font-family, sans-serif));
+}
+
+.site-header-logo,
+.site-header-logo a {
+	font-family: var(--lightning-child-font-header-logo, var(--lightning-child-font-family, sans-serif));
+}
+
+/* お問い合わせ・LINE用の右追尾ボタン。 */
+.lightning-child-floating-contact {
+	--lightning-child-floating-contact-width: 44px;
+	--lightning-child-floating-contact-padding-block: 10px;
+	--lightning-child-floating-contact-padding-inline: 5px;
+	--lightning-child-floating-contact-font-size: 14px;
+	--lightning-child-floating-contact-icon-size: 16px;
+	display: flex;
+	position: fixed;
+	z-index: 9000;
+	top: clamp(64px, var(--lightning-child-floating-contact-top, 15vh), calc(100vh - 240px));
+	flex-direction: column;
+	gap: 8px;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transform: translateY(0);
+	transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+}
+
+.lightning-child-floating-contact.is-scroll-controlled:not(.is-visible) {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transform: translateY(10px);
+}
+
+.lightning-child-floating-contact--right {
+	right: var(--lightning-child-floating-contact-edge, 0);
+	align-items: flex-end;
+}
+
+.lightning-child-floating-contact--left {
+	left: var(--lightning-child-floating-contact-edge, 0);
+	align-items: flex-start;
+}
+
+.lightning-child-floating-contact.is-visible {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transform: translateY(0);
+}
+
+.lightning-child-floating-contact--small {
+	--lightning-child-floating-contact-width: 36px;
+	--lightning-child-floating-contact-padding-block: 8px;
+	--lightning-child-floating-contact-padding-inline: 4px;
+	--lightning-child-floating-contact-font-size: 12px;
+	--lightning-child-floating-contact-icon-size: 14px;
+}
+
+.lightning-child-floating-contact--compact {
+	--lightning-child-floating-contact-width: 40px;
+	--lightning-child-floating-contact-padding-block: 9px;
+	--lightning-child-floating-contact-padding-inline: 4px;
+	--lightning-child-floating-contact-font-size: 13px;
+	--lightning-child-floating-contact-icon-size: 15px;
+}
+
+.lightning-child-floating-contact--large {
+	--lightning-child-floating-contact-width: 50px;
+	--lightning-child-floating-contact-padding-block: 13px;
+	--lightning-child-floating-contact-padding-inline: 6px;
+	--lightning-child-floating-contact-font-size: 15px;
+	--lightning-child-floating-contact-icon-size: 18px;
+}
+
+.lightning-child-floating-contact__link {
+	display: flex;
+	flex: 0 0 auto;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	box-sizing: border-box;
+	width: var(--lightning-child-floating-contact-width);
+	min-width: var(--lightning-child-floating-contact-width);
+	padding: var(--lightning-child-floating-contact-padding-block) var(--lightning-child-floating-contact-padding-inline);
+	color: #ffffff;
+	font-size: var(--lightning-child-floating-contact-font-size);
+	font-weight: 600;
+	line-height: 1.25;
+	text-decoration: none;
+	transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.lightning-child-floating-contact--right .lightning-child-floating-contact__link {
+	border-radius: var(--lightning-child-floating-contact-radius, 5px) 0 0 var(--lightning-child-floating-contact-radius, 5px);
+}
+
+.lightning-child-floating-contact--left .lightning-child-floating-contact__link {
+	border-radius: 0 var(--lightning-child-floating-contact-radius, 5px) var(--lightning-child-floating-contact-radius, 5px) 0;
+}
+
+.lightning-child-floating-contact__link--1 {
+	background: var(--lightning-child-floating-contact-1-bg, #005b32);
+	color: var(--lightning-child-floating-contact-1-text, #ffffff);
+}
+
+.lightning-child-floating-contact__link--2 {
+	background: var(--lightning-child-floating-contact-2-bg, #06c755);
+	color: var(--lightning-child-floating-contact-2-text, #ffffff);
+}
+
+.lightning-child-floating-contact__link:hover,
+.lightning-child-floating-contact__link:focus-visible {
+	filter: brightness(0.9);
+	text-decoration: none;
+}
+
+.lightning-child-floating-contact__link--1:hover,
+.lightning-child-floating-contact__link--1:focus-visible {
+	color: var(--lightning-child-floating-contact-1-text, #ffffff);
+}
+
+.lightning-child-floating-contact__link--2:hover,
+.lightning-child-floating-contact__link--2:focus-visible {
+	color: var(--lightning-child-floating-contact-2-text, #ffffff);
+}
+
+.lightning-child-floating-contact--right .lightning-child-floating-contact__link:hover,
+.lightning-child-floating-contact--right .lightning-child-floating-contact__link:focus-visible {
+	transform: translateX(-3px);
+}
+
+.lightning-child-floating-contact--left .lightning-child-floating-contact__link:hover,
+.lightning-child-floating-contact--left .lightning-child-floating-contact__link:focus-visible {
+	transform: translateX(3px);
+}
+
+.lightning-child-floating-contact__link:focus-visible {
+	outline: 3px solid currentColor;
+	outline-offset: 2px;
+}
+
+.lightning-child-floating-contact__icon {
+	margin: 0 !important;
+	font-size: var(--lightning-child-floating-contact-icon-size);
+	line-height: 1;
+}
+
+.lightning-child-floating-contact__link svg {
+	margin: 0 !important;
+}
+
+.lightning-child-floating-contact__label {
+	letter-spacing: 0.08em;
+	writing-mode: vertical-rl;
+}
+
+.admin-bar .lightning-child-floating-contact {
+	top: clamp(96px, calc(var(--lightning-child-floating-contact-top, 15vh) + 32px), calc(100vh - 240px));
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lightning-child-floating-contact,
+	.lightning-child-floating-contact__link {
+		transition: none;
+	}
+}
+
+@media (max-width: 767px) {
+	.lightning-child-floating-contact {
+		--lightning-child-floating-contact-width: 38px;
+		--lightning-child-floating-contact-padding-block: 8px;
+		--lightning-child-floating-contact-padding-inline: 4px;
+		--lightning-child-floating-contact-font-size: 12px;
+		--lightning-child-floating-contact-icon-size: 14px;
+		top: clamp(64px, var(--lightning-child-floating-contact-top, 15vh), calc(100vh - 210px));
+	}
+
+	.lightning-child-floating-contact--small {
+		--lightning-child-floating-contact-width: 34px;
+		--lightning-child-floating-contact-padding-block: 7px;
+		--lightning-child-floating-contact-font-size: 11px;
+		--lightning-child-floating-contact-icon-size: 13px;
+	}
+
+	.lightning-child-floating-contact--compact {
+		--lightning-child-floating-contact-width: 36px;
+		--lightning-child-floating-contact-padding-block: 8px;
+		--lightning-child-floating-contact-font-size: 12px;
+		--lightning-child-floating-contact-icon-size: 14px;
+	}
+
+	.lightning-child-floating-contact--large {
+		--lightning-child-floating-contact-width: 42px;
+		--lightning-child-floating-contact-padding-block: 10px;
+		--lightning-child-floating-contact-font-size: 13px;
+		--lightning-child-floating-contact-icon-size: 16px;
+	}
+
+	.admin-bar .lightning-child-floating-contact {
+		top: clamp(110px, calc(var(--lightning-child-floating-contact-top, 15vh) + 46px), calc(100vh - 210px));
+	}
+
+	.lightning-child-floating-contact--hide-mobile {
+		display: none;
+	}
+}
+
+/* 固定ページでフッターを非表示にした場合、フッター直前ウィジェットも非表示にします。 */
+.lightning-child-hide-site-footer .site-body-bottom {
+	display: none;
+}
+
+/* Lightning標準フッターと、ブロックフッターのコピーライト領域の配色。 */
+.site-footer,
+.lightning-child-block-site-footer__copyright {
+	background-color: var(--lightning-child-footer-background, #ffffff);
+	color: var(--lightning-child-footer-text, #333333);
+}
+
+:where(.site-footer, .lightning-child-block-site-footer__copyright) a {
+	color: inherit;
+}
+
+/* コピーライトが空欄の場合は、空のコンテナが持つ余白も除去します。 */
+.lightning-child-copyright-hidden .site-footer-copyright {
+	display: none;
+}
+
+/* Lightning標準ヘッダーの基本配色。 */
+.site-header,
+.lightning-child-block-site-header {
+	background-color: var(--lightning-child-header-background, #ffffff);
+	color: var(--lightning-child-header-text, #333333);
+}
+
+.site-header-logo a,
+.global-nav-list > li > a {
+	color: var(--lightning-child-header-text, #333333);
+}
+
+:where(.lightning-child-block-site-header) a {
+	color: inherit;
+}
+
+/* トップページの透過ヘッダー。親テーマのスクロール判定クラスを利用します。 */
+.lightning-child-transparent-header:not(.header_scrolled) .site-header,
+.lightning-child-transparent-header:not(.header_scrolled) .lightning-child-block-site-header {
+	position: absolute;
+	background: var(--lightning-child-header-transparent-background, transparent);
+	box-shadow: none;
+}
+
+.lightning-child-transparent-header:not(.header_scrolled) .site-header-logo a,
+.lightning-child-transparent-header:not(.header_scrolled) .global-nav-list > li > a {
+	color: var(--lightning-child-header-transparent-text, #ffffff);
+}
+
+.lightning-child-transparent-header:not(.header_scrolled) .lightning-child-block-site-header {
+	color: var(--lightning-child-header-transparent-text, #ffffff);
+}
+
+.lightning-child-transparent-header:not(.header_scrolled) .site-header-sub,
+.lightning-child-transparent-header:not(.header_scrolled) .site-header-sub a:not(.btn) {
+	color: var(--lightning-child-header-transparent-text, #ffffff);
+}
+
+.lightning-child-transparent-header:not(.header_scrolled) .site-header-sub .contact-txt-catch,
+.lightning-child-transparent-header:not(.header_scrolled) .site-header-sub .contact-txt-tel,
+.lightning-child-transparent-header:not(.header_scrolled) .site-header-sub .contact-txt-time {
+	color: var(--lightning-child-header-transparent-text, #ffffff);
+}
+
+/* ExUnit連携のヘッダーコンタクト。 */
+.lightning-child-header-contact .site-header-container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.lightning-child-header-contact .site-header-logo {
+	flex: 1 1 auto;
+	width: auto;
+}
+
+.lightning-child-header-contact .site-header-sub {
+	order: 2;
+}
+
+.lightning-child-header-contact .global-nav {
+	order: 3;
+	flex: 0 0 100%;
+	width: 100%;
+	margin-left: 0;
+}
+
+.lightning-child-header-contact .global-nav-list {
+	justify-content: space-between;
+}
+
+.lightning-child-header-contact .site-header-sub .contact-txt a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* ブロックやウィジェットを配置できるヘッダーウィジェット。 */
+.lightning-child-header-widget .site-header-container {
+	display: flex;
+	align-items: center;
+}
+
+.lightning-child-header-widget .site-header-logo {
+	flex: 0 1 auto;
+	width: auto;
+}
+
+.lightning-child-header-widget .global-nav {
+	order: 2;
+	flex: 1 1 auto;
+	margin-left: auto;
+}
+
+.lightning-child-header-widget-area {
+	display: flex;
+	order: 3;
+	align-items: center;
+	flex: 0 1 auto;
+	max-width: 440px;
+	margin: 0 0 0 1.5rem;
+}
+
+.lightning-child-header-widget-area .widget,
+.lightning-child-header-widget-area .wp-block-group,
+.lightning-child-header-widget-area .wp-block-buttons {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+/* Lightningが固定ヘッダーへ切り替えた後の背景色。 */
+.header_scrolled .site-header {
+	background-color: var(--lightning-child-header-scrolled-background, #ffffff);
+}
+
+@media (min-width: 992px) {
+	/* 固定ナビ中央寄せ。 */
+	.header_scrolled.lightning-child-header-scroll-nav-center .site-header-container {
+		display: block;
+	}
+
+	.header_scrolled.lightning-child-header-scroll-nav-center .global-nav-list {
+		justify-content: center;
+		width: fit-content;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	/* 固定ナビをLightningのコンテナ幅いっぱいに均等配置。 */
+	.header_scrolled.lightning-child-header-scroll-nav-container .site-header-container,
+	.header_scrolled.lightning-child-header-scroll-nav-container .global-nav,
+	.header_scrolled.lightning-child-header-scroll-nav-container .global-nav-list {
+		width: 100%;
+	}
+
+	.header_scrolled.lightning-child-header-scroll-nav-container .global-nav-list {
+		display: flex;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.header_scrolled.lightning-child-header-scroll-nav-container .global-nav-list > li {
+		flex: 1 1 0;
+		text-align: center;
+	}
+
+	.lightning-child-transparent-header-gradient:not(.header_scrolled) .site-header,
+	.lightning-child-transparent-header-gradient:not(.header_scrolled) .lightning-child-block-site-header {
+		background: linear-gradient(
+			to bottom,
+			var(--lightning-child-header-transparent-background, transparent),
+			var(--lightning-child-header-transparent-clear, transparent)
+		);
+	}
+
+	.header_scrolled.lightning-child-header-scroll-logo-nav .site-header-container {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+
+	.header_scrolled.lightning-child-header-scroll-logo-nav .site-header-logo {
+		display: block;
+		flex: 0 0 auto;
+		width: auto;
+		margin: 0 2rem 0 0;
+		padding: 0;
+	}
+
+	.header_scrolled.lightning-child-header-scroll-logo-nav .site-header-logo img {
+		max-height: 48px;
+		margin: 0;
+	}
+
+	.header_scrolled.lightning-child-header-scroll-logo-nav .global-nav {
+		order: initial;
+		flex: 1 1 auto;
+		width: auto;
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	.header_scrolled.lightning-child-header-scroll-logo-nav .global-nav-list {
+		justify-content: flex-end;
+		margin-left: auto;
+	}
+
+	.header_scrolled.lightning-child-header-scroll-logo-nav .lightning-child-header-widget-area {
+		display: none;
+	}
+
+	/* Lightning標準ヘッダーのPCロゴ表示設定。 */
+	body.lightning-child-header-logo-hidden .site-header:not(.lightning-child-block-site-header) .site-header-logo,
+	body.lightning-child-header-logo-first-view-hidden:not(.header_scrolled) .site-header:not(.lightning-child-block-site-header) .site-header-logo {
+		display: none;
+	}
+}
+
+/* WordPress標準のブロックテンプレートパーツ用ラッパー。 */
+.lightning-child-block-site-header,
+.lightning-child-block-site-footer {
+	position: relative;
+	width: 100%;
+}
+
+.lightning-child-block-site-header {
+	z-index: 1000;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.lightning-child-block-site-header .wp-block-group,
+.lightning-child-block-site-footer .wp-block-group,
+.lightning-child-mobile-menu-drawer .wp-block-group {
+	box-sizing: border-box;
+}
+
+.lightning-child-mobile-menu-drawer,
+.lightning-child-mobile-menu-drawer-backdrop {
+	display: none;
+}
+
+/* Lightning標準ページヘッダーへ追加するキャッチフレーズとサブテキスト。 */
+.page-header .page-header-catchphrase,
+.page-header .page-header-subtext {
+	display: block;
+}
+
+/* モバイル固定ナビ。PCでは常に非表示にします。 */
+.lightning-child-mobile-fixed-nav {
+	display: none;
+}
+
+/* モバイルでのロゴ位置。 */
+@media (max-width: 991px) {
+	/* Lightningの固定サイドバー解除より先にモバイル配置へ戻し、幅変更時のちらつきを防ぎます。 */
+	.sub-section {
+		position: static !important;
+		top: auto !important;
+		right: auto !important;
+		bottom: auto !important;
+		left: auto !important;
+	}
+
+	.lightning-child-header-contact .site-header-container,
+	.lightning-child-header-widget .site-header-container {
+		display: block;
+	}
+
+	.lightning-child-header-widget-area {
+		display: none;
+	}
+
+	/* 透過ヘッダー上でもLightning標準のモバイルメニューボタンを見やすくします。 */
+	.lightning-child-transparent-header:not(.header_scrolled) {
+		--vk-mobile-nav-menu-btn-bg-src: var(--lightning-child-mobile-menu-button-light);
+		--vk-mobile-nav-menu-btn-close-bg-src: var(--lightning-child-mobile-menu-close-light);
+	}
+
+	.lightning-child-mobile-logo-left .site-header-logo {
+		text-align: left;
+	}
+
+	.lightning-child-mobile-logo-left .site-header-logo img {
+		margin-right: auto;
+		margin-left: 0;
+	}
+
+	.lightning-child-mobile-logo-center .site-header-logo {
+		text-align: center;
+	}
+
+	.lightning-child-mobile-logo-center .site-header-logo img {
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.lightning-child-mobile-logo-right .site-header-logo {
+		text-align: right;
+	}
+
+	.lightning-child-mobile-logo-right .site-header-logo img {
+		margin-right: 0;
+		margin-left: auto;
+	}
+
+	/* ロゴを隠してもLightning標準ハンバーガーボタン用の高さを維持します。 */
+	body.lightning-child-mobile-logo-hidden .site-header:not(.lightning-child-block-site-header) .site-header-logo {
+		display: none;
+	}
+
+	body.lightning-child-mobile-logo-hidden .site-header:not(.lightning-child-block-site-header) .site-header-container {
+		min-height: 60px;
+	}
+
+	body.lightning-child-mobile-fixed-nav-enabled {
+		padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+	}
+
+	.lightning-child-mobile-fixed-nav {
+		display: block;
+		position: fixed;
+		z-index: 10000;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		padding-bottom: env(safe-area-inset-bottom, 0px);
+		border-top: 1px solid var(--lightning-child-mobile-fixed-nav-border, #555555);
+		background: var(--lightning-child-mobile-fixed-nav-background, #333333);
+		box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.12);
+	}
+
+	.lightning-child-mobile-fixed-nav__list {
+		display: grid;
+		grid-template-columns: repeat(var(--lightning-child-mobile-fixed-nav-items, 5), minmax(0, 1fr));
+		min-height: 69px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.lightning-child-mobile-fixed-nav__item {
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+	}
+
+	.lightning-child-mobile-fixed-nav__link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 4px;
+		box-sizing: border-box;
+		width: 100%;
+		height: 69px;
+		margin: 0;
+		padding: 5px 2px 4px;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		color: var(--lightning-child-mobile-fixed-nav-text, #ffffff);
+		font: inherit;
+		text-align: center;
+		text-decoration: none;
+		cursor: pointer;
+		appearance: none;
+	}
+
+	.lightning-child-mobile-fixed-nav__link:hover,
+	.lightning-child-mobile-fixed-nav__link:focus-visible {
+		color: var(--lightning-child-mobile-fixed-nav-active-text, #ffffff);
+		background: var(--lightning-child-mobile-fixed-nav-active-background, #1a1a1a);
+		text-decoration: none;
+	}
+
+	.lightning-child-mobile-fixed-nav__item.is-current .lightning-child-mobile-fixed-nav__link,
+	.lightning-child-mobile-fixed-nav__menu-button.is-open {
+		color: var(--lightning-child-mobile-fixed-nav-active-text, #ffffff);
+		background: var(--lightning-child-mobile-fixed-nav-active-background, #1a1a1a);
+	}
+
+	.lightning-child-mobile-fixed-nav__icon {
+		display: block;
+		font-size: 1.55rem;
+		line-height: 1;
+	}
+
+	.lightning-child-mobile-fixed-nav__label {
+		display: -webkit-box;
+		overflow: hidden;
+		max-width: 100%;
+		font-size: 0.72rem;
+		font-weight: 600;
+		line-height: 1.15;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+	}
+
+	.lightning-child-mobile-fixed-nav--compact .lightning-child-mobile-fixed-nav__icon {
+		font-size: 1.35rem;
+	}
+
+	.lightning-child-mobile-fixed-nav--compact .lightning-child-mobile-fixed-nav__label {
+		font-size: 0.64rem;
+	}
+
+	body.lightning-child-mobile-fixed-nav-has-menu.lightning-child-mobile-menu-drawer-ready > #vk-mobile-nav-menu-btn {
+		display: none;
+	}
+
+	body.lightning-child-mobile-menu-drawer-ready {
+		--lightning-child-mobile-menu-drawer-width: min(88vw, 420px);
+	}
+
+	body.lightning-child-mobile-menu-drawer-ready .lightning-child-mobile-menu-drawer:is(.is-open, .is-closing) {
+		display: block;
+		position: fixed;
+		z-index: 10020;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: var(--lightning-child-mobile-menu-drawer-width);
+		max-width: 100%;
+		height: 100vh;
+		height: 100dvh;
+		overflow-x: hidden;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		visibility: visible;
+		background: var(--lightning-child-mobile-menu-drawer-background, #ffffff);
+		color: var(--lightning-child-mobile-menu-drawer-text, #333333);
+		box-shadow: 8px 0 24px rgba(0, 0, 0, 0.22);
+	}
+
+	body.lightning-child-mobile-menu-drawer-ready .lightning-child-mobile-menu-drawer.is-open {
+		pointer-events: auto;
+		transform: translateX(0);
+		animation: lightning-child-mobile-menu-drawer-open 0.3s ease both;
+	}
+
+	body.lightning-child-mobile-menu-drawer-ready .lightning-child-mobile-menu-drawer.is-closing {
+		pointer-events: none;
+		transform: translateX(-100%);
+		transition: transform 0.3s ease;
+	}
+
+	body.lightning-child-mobile-menu-drawer-ready .lightning-child-mobile-menu-drawer:is(.is-open, .is-closing) .alignfull {
+		width: 100%;
+		max-width: 100%;
+		margin-right: 0;
+		margin-left: 0;
+	}
+
+	.lightning-child-mobile-menu-drawer a:not(.has-text-color) {
+		color: inherit;
+	}
+
+	body.lightning-child-mobile-menu-drawer-open {
+		overflow: hidden;
+	}
+
+	.lightning-child-mobile-menu-drawer:is(.is-open, .is-closing) .lightning-child-mobile-menu-drawer__close {
+		display: flex;
+		position: sticky;
+		z-index: 2;
+		top: 0;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		margin: 0 0 0 auto;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background: var(--lightning-child-mobile-menu-drawer-background, #ffffff);
+		color: var(--lightning-child-mobile-menu-drawer-text, #333333);
+		font-size: 2rem;
+		line-height: 1;
+		cursor: pointer;
+	}
+
+	.lightning-child-mobile-menu-drawer__close:focus-visible {
+		outline: 3px solid currentColor;
+		outline-offset: -4px;
+	}
+
+	.lightning-child-mobile-menu-drawer-backdrop {
+		display: block;
+		position: fixed;
+		z-index: 10010;
+		inset: 0;
+		visibility: hidden;
+		opacity: 0;
+		background: rgba(0, 0, 0, 0.58);
+		pointer-events: none;
+		transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+	}
+
+	.lightning-child-mobile-menu-drawer-backdrop.is-open {
+		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
+		transition-delay: 0s;
+	}
+
+	.admin-bar.lightning-child-mobile-menu-drawer-ready .lightning-child-mobile-menu-drawer:is(.is-open, .is-closing) {
+		top: 32px;
+		height: calc(100dvh - 32px);
+	}
+
+	body.lightning-child-mobile-fixed-nav-enabled .page_top_btn {
+		bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+	}
+}
+
+@media (max-width: 782px) {
+	.admin-bar.lightning-child-mobile-menu-drawer-ready .lightning-child-mobile-menu-drawer:is(.is-open, .is-closing) {
+		top: 46px;
+		height: calc(100dvh - 46px);
+	}
+}
+
+@media (max-width: 991px) and (prefers-reduced-motion: reduce) {
+	body.lightning-child-mobile-menu-drawer-ready .lightning-child-mobile-menu-drawer:is(.is-open, .is-closing),
+	.lightning-child-mobile-menu-drawer-backdrop {
+		transition: none;
+		animation: none;
+	}
+}
+
+@keyframes lightning-child-mobile-menu-drawer-open {
+	from {
+		transform: translateX(-100%);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}
