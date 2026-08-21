@@ -75,7 +75,7 @@ $updater = new \CniWorks\CniLightningChild\Updater\GitHub_Release_Updater(
 		'repository' => 'cni-lightning-child',
 		'slug'       => 'cni-lightning-child',
 		'stylesheet' => 'cni-lightning-child',
-		'version'    => '0.7.2',
+		'version'    => '0.7.3',
 		'update_uri' => 'https://github.com/cni-works/cni-lightning-child',
 	)
 );
