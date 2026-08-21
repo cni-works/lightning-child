@@ -131,8 +131,8 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 	$wp_customize->add_section(
 		$section_id,
 		array(
-			'title'       => __( 'Lightning 右追尾ボタン', 'lightning-child' ),
-			'description' => __( 'お問い合わせやLINEへの固定ボタンを最大2つ表示します。初期状態では表示されません。', 'lightning-child' ),
+			'title'       => __( 'Lightning 右追尾ボタン', 'cni-lightning-child' ),
+			'description' => __( 'お問い合わせやLINEへの固定ボタンを最大2つ表示します。初期状態では表示されません。', 'cni-lightning-child' ),
 			'priority'    => 170,
 		)
 	);
@@ -147,7 +147,7 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_floating_contact_enabled',
 		array(
-			'label'   => __( '右追尾ボタンを表示する', 'lightning-child' ),
+			'label'   => __( '右追尾ボタンを表示する', 'cni-lightning-child' ),
 			'section' => $section_id,
 			'type'    => 'checkbox',
 		)
@@ -163,12 +163,12 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_floating_contact_display_mode',
 		array(
-			'label'   => __( '表示タイミング', 'lightning-child' ),
+			'label'   => __( '表示タイミング', 'cni-lightning-child' ),
 			'section' => $section_id,
 			'type'    => 'radio',
 			'choices' => array(
-				'scroll' => __( 'スクロール後に表示', 'lightning-child' ),
-				'always' => __( '常に表示', 'lightning-child' ),
+				'scroll' => __( 'スクロール後に表示', 'cni-lightning-child' ),
+				'always' => __( '常に表示', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -183,8 +183,8 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_floating_contact_scroll_threshold',
 		array(
-			'label'       => __( '表示を開始するスクロール量', 'lightning-child' ),
-			'description' => __( '「スクロール後に表示」の場合に使用します。0〜2000pxで指定します。', 'lightning-child' ),
+			'label'       => __( '表示を開始するスクロール量', 'cni-lightning-child' ),
+			'description' => __( '「スクロール後に表示」の場合に使用します。0〜2000pxで指定します。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'number',
 			'input_attrs' => array(
@@ -205,8 +205,8 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_floating_contact_hide_mobile',
 		array(
-			'label'       => __( 'スマートフォンでは表示しない', 'lightning-child' ),
-			'description' => __( '画面幅767px以下で非表示にします。', 'lightning-child' ),
+			'label'       => __( 'スマートフォンでは表示しない', 'cni-lightning-child' ),
+			'description' => __( '画面幅767px以下で非表示にします。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'checkbox',
 		)
@@ -222,20 +222,20 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_floating_contact_side',
 		array(
-			'label'   => __( '表示する側', 'lightning-child' ),
+			'label'   => __( '表示する側', 'cni-lightning-child' ),
 			'section' => $section_id,
 			'type'    => 'radio',
 			'choices' => array(
-				'right' => __( '右側', 'lightning-child' ),
-				'left'  => __( '左側', 'lightning-child' ),
+				'right' => __( '右側', 'cni-lightning-child' ),
+				'left'  => __( '左側', 'cni-lightning-child' ),
 			),
 		)
 	);
 
 	$number_settings = array(
 		'lightning_child_floating_contact_top'    => array(
-			'label'       => __( '上からの位置', 'lightning-child' ),
-			'description' => __( '画面の高さに対する割合です。5〜80vhで指定します。', 'lightning-child' ),
+			'label'       => __( '上からの位置', 'cni-lightning-child' ),
+			'description' => __( '画面の高さに対する割合です。5〜80vhで指定します。', 'cni-lightning-child' ),
 			'default'     => 15,
 			'sanitize'    => 'lightning_child_sanitize_floating_contact_top',
 			'min'         => 5,
@@ -243,8 +243,8 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 			'step'        => 1,
 		),
 		'lightning_child_floating_contact_edge'   => array(
-			'label'       => __( '画面端からの余白', 'lightning-child' ),
-			'description' => __( '0〜80pxで指定します。', 'lightning-child' ),
+			'label'       => __( '画面端からの余白', 'cni-lightning-child' ),
+			'description' => __( '0〜80pxで指定します。', 'cni-lightning-child' ),
 			'default'     => 0,
 			'sanitize'    => 'lightning_child_sanitize_floating_contact_edge',
 			'min'         => 0,
@@ -252,8 +252,8 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 			'step'        => 1,
 		),
 		'lightning_child_floating_contact_radius' => array(
-			'label'       => __( '角丸', 'lightning-child' ),
-			'description' => __( '0〜30pxで指定します。', 'lightning-child' ),
+			'label'       => __( '角丸', 'cni-lightning-child' ),
+			'description' => __( '0〜30pxで指定します。', 'cni-lightning-child' ),
 			'default'     => 5,
 			'sanitize'    => 'lightning_child_sanitize_floating_contact_radius',
 			'min'         => 0,
@@ -296,14 +296,14 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_floating_contact_size',
 		array(
-			'label'   => __( 'ボタンサイズ', 'lightning-child' ),
+			'label'   => __( 'ボタンサイズ', 'cni-lightning-child' ),
 			'section' => $section_id,
 			'type'    => 'select',
 			'choices' => array(
-				'small'   => __( '小', 'lightning-child' ),
-				'compact' => __( 'やや小さめ', 'lightning-child' ),
-				'medium'  => __( '標準', 'lightning-child' ),
-				'large'   => __( '大', 'lightning-child' ),
+				'small'   => __( '小', 'cni-lightning-child' ),
+				'compact' => __( 'やや小さめ', 'cni-lightning-child' ),
+				'medium'  => __( '標準', 'cni-lightning-child' ),
+				'large'   => __( '大', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -311,14 +311,14 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 	$button_defaults = array(
 		1 => array(
 			'enabled' => true,
-			'label'   => __( 'お問い合わせ', 'lightning-child' ),
+			'label'   => __( 'お問い合わせ', 'cni-lightning-child' ),
 			'icon'    => 'fa-regular fa-envelope',
 			'bg'      => '#005b32',
 			'text'    => '#ffffff',
 		),
 		2 => array(
 			'enabled' => false,
-			'label'   => __( 'LINEで相談', 'lightning-child' ),
+			'label'   => __( 'LINEで相談', 'cni-lightning-child' ),
 			'icon'    => 'fa-brands fa-line',
 			'bg'      => '#06c755',
 			'text'    => '#ffffff',
@@ -340,7 +340,7 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 			array(
 				'label'   => sprintf(
 					/* translators: %d: button number. */
-					__( 'ボタン%dを表示する', 'lightning-child' ),
+					__( 'ボタン%dを表示する', 'cni-lightning-child' ),
 					$index
 				),
 				'section' => $section_id,
@@ -350,22 +350,22 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 
 		$text_settings = array(
 			'label' => array(
-				'label'    => __( 'テキスト', 'lightning-child' ),
+				'label'    => __( 'テキスト', 'cni-lightning-child' ),
 				'default'  => $defaults['label'],
 				'sanitize' => 'lightning_child_sanitize_floating_contact_label',
-				'desc'     => __( '縦書きで表示します（最大30文字）。', 'lightning-child' ),
+				'desc'     => __( '縦書きで表示します（最大30文字）。', 'cni-lightning-child' ),
 			),
 			'icon'  => array(
-				'label'    => __( 'Font Awesomeクラス', 'lightning-child' ),
+				'label'    => __( 'Font Awesomeクラス', 'cni-lightning-child' ),
 				'default'  => $defaults['icon'],
 				'sanitize' => 'lightning_child_sanitize_font_awesome_classes',
-				'desc'     => __( '例: fa-regular fa-envelope / fa-brands fa-line（HTMLタグは入力しません）', 'lightning-child' ),
+				'desc'     => __( '例: fa-regular fa-envelope / fa-brands fa-line（HTMLタグは入力しません）', 'cni-lightning-child' ),
 			),
 			'url'   => array(
-				'label'    => __( 'リンクURL', 'lightning-child' ),
+				'label'    => __( 'リンクURL', 'cni-lightning-child' ),
 				'default'  => '',
 				'sanitize' => 'lightning_child_sanitize_floating_contact_url',
-				'desc'     => __( '例: /contact/、https://line.me/…、mailto:info@example.com', 'lightning-child' ),
+				'desc'     => __( '例: /contact/、https://line.me/…、mailto:info@example.com', 'cni-lightning-child' ),
 			),
 		);
 
@@ -382,7 +382,7 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 				array(
 					'label'       => sprintf(
 						/* translators: 1: button number, 2: field label. */
-						__( 'ボタン%1$d：%2$s', 'lightning-child' ),
+						__( 'ボタン%1$d：%2$s', 'cni-lightning-child' ),
 						$index,
 						$setting['label']
 					),
@@ -405,7 +405,7 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 			array(
 				'label'   => sprintf(
 					/* translators: %d: button number. */
-					__( 'ボタン%d：新しいウィンドウで開く', 'lightning-child' ),
+					__( 'ボタン%d：新しいウィンドウで開く', 'cni-lightning-child' ),
 					$index
 				),
 				'section' => $section_id,
@@ -415,11 +415,11 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 
 		$color_settings = array(
 			'background_color' => array(
-				'label'   => __( '背景色', 'lightning-child' ),
+				'label'   => __( '背景色', 'cni-lightning-child' ),
 				'default' => $defaults['bg'],
 			),
 			'text_color'       => array(
-				'label'   => __( '文字・アイコン色', 'lightning-child' ),
+				'label'   => __( '文字・アイコン色', 'cni-lightning-child' ),
 				'default' => $defaults['text'],
 			),
 		);
@@ -440,7 +440,7 @@ function lightning_child_customize_floating_contact( $wp_customize ) {
 					array(
 						'label'   => sprintf(
 							/* translators: 1: button number, 2: field label. */
-							__( 'ボタン%1$d：%2$s', 'lightning-child' ),
+							__( 'ボタン%1$d：%2$s', 'cni-lightning-child' ),
 							$index,
 							$setting['label']
 						),
@@ -470,11 +470,11 @@ function lightning_child_is_floating_contact_enabled() {
 function lightning_child_get_floating_contact_items() {
 	$defaults = array(
 		1 => array(
-			'label' => __( 'お問い合わせ', 'lightning-child' ),
+			'label' => __( 'お問い合わせ', 'cni-lightning-child' ),
 			'icon'  => 'fa-regular fa-envelope',
 		),
 		2 => array(
-			'label' => __( 'LINEで相談', 'lightning-child' ),
+			'label' => __( 'LINEで相談', 'cni-lightning-child' ),
 			'icon'  => 'fa-brands fa-line',
 		),
 	);
@@ -559,7 +559,7 @@ function lightning_child_render_floating_contact() {
 		$classes[] = 'lightning-child-floating-contact--hide-mobile';
 	}
 	?>
-	<aside class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" aria-label="<?php esc_attr_e( 'お問い合わせ', 'lightning-child' ); ?>" data-display-mode="<?php echo esc_attr( $mode ); ?>" data-scroll-threshold="<?php echo esc_attr( $threshold ); ?>">
+	<aside class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" aria-label="<?php esc_attr_e( 'お問い合わせ', 'cni-lightning-child' ); ?>" data-display-mode="<?php echo esc_attr( $mode ); ?>" data-scroll-threshold="<?php echo esc_attr( $threshold ); ?>">
 		<?php foreach ( $items as $item ) : ?>
 			<a class="lightning-child-floating-contact__link lightning-child-floating-contact__link--<?php echo esc_attr( $item['index'] ); ?>" href="<?php echo esc_url( $item['url'] ); ?>"<?php echo $item['new_window'] ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>>
 				<?php if ( '' !== $item['icon'] ) : ?>

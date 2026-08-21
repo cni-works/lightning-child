@@ -64,8 +64,8 @@ function lightning_child_customize_page_top_settings( $wp_customize ) {
 	$wp_customize->add_section(
 		$section_id,
 		array(
-			'title'       => __( 'Lightning スクロールアップ', 'lightning-child' ),
-			'description' => __( 'ページ右下のスクロールアップボタンのデザインを変更します。位置と動作は変更しません。', 'lightning-child' ),
+			'title'       => __( 'Lightning スクロールアップ', 'cni-lightning-child' ),
+			'description' => __( 'ページ右下のスクロールアップボタンのデザインを変更します。位置と動作は変更しません。', 'cni-lightning-child' ),
 			'priority'    => 169,
 		)
 	);
@@ -80,7 +80,7 @@ function lightning_child_customize_page_top_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_page_top_enabled',
 		array(
-			'label'   => __( '子テーマのデザインを使用する', 'lightning-child' ),
+			'label'   => __( '子テーマのデザインを使用する', 'cni-lightning-child' ),
 			'section' => $section_id,
 			'type'    => 'checkbox',
 		)
@@ -96,12 +96,12 @@ function lightning_child_customize_page_top_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_page_top_mode',
 		array(
-			'label'   => __( '表示方法', 'lightning-child' ),
+			'label'   => __( '表示方法', 'cni-lightning-child' ),
 			'section' => $section_id,
 			'type'    => 'radio',
 			'choices' => array(
-				'design' => __( '色と形を変更する', 'lightning-child' ),
-				'image'  => __( '指定画像をボタン全体に使用する', 'lightning-child' ),
+				'design' => __( '色と形を変更する', 'cni-lightning-child' ),
+				'image'  => __( '指定画像をボタン全体に使用する', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -116,8 +116,8 @@ function lightning_child_customize_page_top_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_page_top_size',
 		array(
-			'label'       => __( 'ボタンサイズ', 'lightning-child' ),
-			'description' => __( '縦横共通の表示サイズです。40〜80pxで指定します。', 'lightning-child' ),
+			'label'       => __( 'ボタンサイズ', 'cni-lightning-child' ),
+			'description' => __( '縦横共通の表示サイズです。40〜80pxで指定します。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'number',
 			'input_attrs' => array(
@@ -138,14 +138,14 @@ function lightning_child_customize_page_top_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_page_top_shape',
 		array(
-			'label'       => __( 'ボタンの形', 'lightning-child' ),
-			'description' => __( '「色と形を変更する」場合に使用します。', 'lightning-child' ),
+			'label'       => __( 'ボタンの形', 'cni-lightning-child' ),
+			'description' => __( '「色と形を変更する」場合に使用します。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'radio',
 			'choices'     => array(
-				'circle'  => __( '正円', 'lightning-child' ),
-				'rounded' => __( '角丸', 'lightning-child' ),
-				'square'  => __( '四角', 'lightning-child' ),
+				'circle'  => __( '正円', 'cni-lightning-child' ),
+				'rounded' => __( '角丸', 'cni-lightning-child' ),
+				'square'  => __( '四角', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -162,7 +162,7 @@ function lightning_child_customize_page_top_settings( $wp_customize ) {
 			$wp_customize,
 			'lightning_child_page_top_background_color',
 			array(
-				'label'   => __( '背景色', 'lightning-child' ),
+				'label'   => __( '背景色', 'cni-lightning-child' ),
 				'section' => $section_id,
 			)
 		)
@@ -178,8 +178,8 @@ function lightning_child_customize_page_top_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_page_top_background_opacity',
 		array(
-			'label'       => __( '背景の透明度', 'lightning-child' ),
-			'description' => __( '0（透明）から1（不透明）の数字で入力します。画像モードでは使用しません。', 'lightning-child' ),
+			'label'       => __( '背景の透明度', 'cni-lightning-child' ),
+			'description' => __( '0（透明）から1（不透明）の数字で入力します。画像モードでは使用しません。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'number',
 			'input_attrs' => array(
@@ -200,8 +200,8 @@ function lightning_child_customize_page_top_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_page_top_outline_enabled',
 		array(
-			'label'       => __( '外周線を表示する', 'lightning-child' ),
-			'description' => __( '画像モードでは使用しません。', 'lightning-child' ),
+			'label'       => __( '外周線を表示する', 'cni-lightning-child' ),
+			'description' => __( '画像モードでは使用しません。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'checkbox',
 		)
@@ -219,7 +219,7 @@ function lightning_child_customize_page_top_settings( $wp_customize ) {
 			$wp_customize,
 			'lightning_child_page_top_outline_color',
 			array(
-				'label'   => __( '外周線の色', 'lightning-child' ),
+				'label'   => __( '外周線の色', 'cni-lightning-child' ),
 				'section' => $section_id,
 			)
 		)
@@ -237,8 +237,8 @@ function lightning_child_customize_page_top_settings( $wp_customize ) {
 			$wp_customize,
 			'lightning_child_page_top_image',
 			array(
-				'label'       => __( 'ボタン画像', 'lightning-child' ),
-				'description' => __( '透明背景の正方形PNGまたはWebPを推奨します。画像がない場合は通常デザインへ戻ります。', 'lightning-child' ),
+				'label'       => __( 'ボタン画像', 'cni-lightning-child' ),
+				'description' => __( '透明背景の正方形PNGまたはWebPを推奨します。画像がない場合は通常デザインへ戻ります。', 'cni-lightning-child' ),
 				'section'     => $section_id,
 				'mime_type'   => 'image',
 			)

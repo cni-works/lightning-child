@@ -65,17 +65,17 @@ function lightning_child_customize_post_display_settings( $wp_customize ) {
 	$wp_customize->add_panel(
 		'lightning_child_post_display',
 		array(
-			'title'       => __( 'Lightning 子テーマ 投稿表示', 'lightning-child' ),
-			'description' => __( 'Lightning標準の詳細ページに表示する情報を投稿タイプごとに設定します。', 'lightning-child' ),
+			'title'       => __( 'Lightning 子テーマ 投稿表示', 'cni-lightning-child' ),
+			'description' => __( 'Lightning標準の詳細ページに表示する情報を投稿タイプごとに設定します。', 'cni-lightning-child' ),
 			'priority'    => 166,
 		)
 	);
 
 	$items = array(
-		'published' => __( '公開日を表示する', 'lightning-child' ),
-		'updated'   => __( '更新日を表示する', 'lightning-child' ),
-		'author'    => __( '投稿者名と投稿者画像を表示する', 'lightning-child' ),
-		'next_prev' => __( '前の記事・次の記事を表示する', 'lightning-child' ),
+		'published' => __( '公開日を表示する', 'cni-lightning-child' ),
+		'updated'   => __( '更新日を表示する', 'cni-lightning-child' ),
+		'author'    => __( '投稿者名と投稿者画像を表示する', 'cni-lightning-child' ),
+		'next_prev' => __( '前の記事・次の記事を表示する', 'cni-lightning-child' ),
 	);
 
 	foreach ( $post_types as $post_type ) {
@@ -87,7 +87,7 @@ function lightning_child_customize_post_display_settings( $wp_customize ) {
 				'title'       => $post_type->labels->name,
 				'description' => sprintf(
 					/* translators: %s: post type label. */
-					__( '%sの詳細ページに適用します。独自テンプレートを使用する投稿タイプでは反映されない場合があります。', 'lightning-child' ),
+					__( '%sの詳細ページに適用します。独自テンプレートを使用する投稿タイプでは反映されない場合があります。', 'cni-lightning-child' ),
 					$post_type->labels->singular_name
 				),
 				'panel'       => 'lightning_child_post_display',

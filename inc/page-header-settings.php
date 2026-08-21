@@ -231,20 +231,20 @@ function lightning_child_enqueue_page_header_panel() {
 		'lightningChildPageHeader',
 		array(
 			'postType'         => $screen->post_type,
-			'panelTitle'       => __( 'ページヘッダー個別設定', 'lightning-child' ),
-			'enabledLabel'     => __( 'このコンテンツで個別設定を使用する', 'lightning-child' ),
-			'enabledHelp'      => __( '有効にすると、空欄は非表示、画像未選択は背景画像なしとして扱います。モバイル画像だけ未選択の場合はPC画像を使用します。', 'lightning-child' ),
-			'catchphraseLabel' => __( 'キャッチフレーズ', 'lightning-child' ),
-			'subtextLabel'     => __( 'サブテキスト', 'lightning-child' ),
-			'desktopImage'     => __( '背景画像（PC）', 'lightning-child' ),
-			'mobileImage'      => __( '背景画像（モバイル）', 'lightning-child' ),
-			'overlayEnabled'   => __( 'オーバーレイを個別設定する', 'lightning-child' ),
-			'overlayHelp'      => __( '無効の場合は、この投稿タイプのオーバーレイ設定を引き継ぎます。', 'lightning-child' ),
-			'overlayColor'     => __( 'オーバーレイの色', 'lightning-child' ),
-			'overlayOpacity'   => __( 'オーバーレイの濃さ（不透明度）', 'lightning-child' ),
-			'selectImage'      => __( '画像を選択', 'lightning-child' ),
-			'changeImage'      => __( '画像を変更', 'lightning-child' ),
-			'removeImage'      => __( '画像を解除', 'lightning-child' ),
+			'panelTitle'       => __( 'ページヘッダー個別設定', 'cni-lightning-child' ),
+			'enabledLabel'     => __( 'このコンテンツで個別設定を使用する', 'cni-lightning-child' ),
+			'enabledHelp'      => __( '有効にすると、空欄は非表示、画像未選択は背景画像なしとして扱います。モバイル画像だけ未選択の場合はPC画像を使用します。', 'cni-lightning-child' ),
+			'catchphraseLabel' => __( 'キャッチフレーズ', 'cni-lightning-child' ),
+			'subtextLabel'     => __( 'サブテキスト', 'cni-lightning-child' ),
+			'desktopImage'     => __( '背景画像（PC）', 'cni-lightning-child' ),
+			'mobileImage'      => __( '背景画像（モバイル）', 'cni-lightning-child' ),
+			'overlayEnabled'   => __( 'オーバーレイを個別設定する', 'cni-lightning-child' ),
+			'overlayHelp'      => __( '無効の場合は、この投稿タイプのオーバーレイ設定を引き継ぎます。', 'cni-lightning-child' ),
+			'overlayColor'     => __( 'オーバーレイの色', 'cni-lightning-child' ),
+			'overlayOpacity'   => __( 'オーバーレイの濃さ（不透明度）', 'cni-lightning-child' ),
+			'selectImage'      => __( '画像を選択', 'cni-lightning-child' ),
+			'changeImage'      => __( '画像を変更', 'cni-lightning-child' ),
+			'removeImage'      => __( '画像を解除', 'cni-lightning-child' ),
 		)
 	);
 }
@@ -263,7 +263,7 @@ function lightning_child_add_page_header_meta_box() {
 
 		add_meta_box(
 			'lightning_child_page_header_individual',
-			__( 'ページヘッダー個別設定', 'lightning-child' ),
+			__( 'ページヘッダー個別設定', 'cni-lightning-child' ),
 			'lightning_child_render_page_header_meta_box',
 			$post_type->name,
 			'side',
@@ -290,8 +290,8 @@ function lightning_child_render_page_header_image_field( $post, $meta_key, $labe
 		<div data-lightning-child-image-preview><?php echo $attachment_id ? wp_kses_post( wp_get_attachment_image( $attachment_id, 'thumbnail' ) ) : ''; ?></div>
 		<input type="hidden" name="<?php echo esc_attr( $meta_key ); ?>" value="<?php echo esc_attr( $attachment_id ); ?>" data-lightning-child-image-input>
 		<p>
-			<button type="button" class="button" data-lightning-child-image-select><?php esc_html_e( '画像を選択・変更', 'lightning-child' ); ?></button>
-			<button type="button" class="button-link-delete" data-lightning-child-image-remove<?php echo $attachment_id ? '' : ' hidden'; ?>><?php esc_html_e( '解除', 'lightning-child' ); ?></button>
+			<button type="button" class="button" data-lightning-child-image-select><?php esc_html_e( '画像を選択・変更', 'cni-lightning-child' ); ?></button>
+			<button type="button" class="button-link-delete" data-lightning-child-image-remove<?php echo $attachment_id ? '' : ' hidden'; ?>><?php esc_html_e( '解除', 'cni-lightning-child' ); ?></button>
 		</p>
 	</div>
 	<?php
@@ -315,18 +315,18 @@ function lightning_child_render_page_header_meta_box( $post ) {
 		? lightning_child_sanitize_page_header_opacity( get_post_meta( $post->ID, '_lightning_child_page_header_overlay_opacity', true ) )
 		: 0.4;
 	?>
-	<p><label><input type="checkbox" name="_lightning_child_page_header_custom_enabled" value="1" <?php checked( $enabled ); ?>> <?php esc_html_e( 'このコンテンツで個別設定を使用する', 'lightning-child' ); ?></label></p>
-	<p><label><strong><?php esc_html_e( 'キャッチフレーズ', 'lightning-child' ); ?></strong><br><input class="widefat" type="text" name="_lightning_child_page_header_catchphrase" value="<?php echo esc_attr( $catchphrase ); ?>"></label></p>
-	<p><label><strong><?php esc_html_e( 'サブテキスト', 'lightning-child' ); ?></strong><br><input class="widefat" type="text" name="_lightning_child_page_header_subtext" value="<?php echo esc_attr( $subtext ); ?>"></label></p>
+	<p><label><input type="checkbox" name="_lightning_child_page_header_custom_enabled" value="1" <?php checked( $enabled ); ?>> <?php esc_html_e( 'このコンテンツで個別設定を使用する', 'cni-lightning-child' ); ?></label></p>
+	<p><label><strong><?php esc_html_e( 'キャッチフレーズ', 'cni-lightning-child' ); ?></strong><br><input class="widefat" type="text" name="_lightning_child_page_header_catchphrase" value="<?php echo esc_attr( $catchphrase ); ?>"></label></p>
+	<p><label><strong><?php esc_html_e( 'サブテキスト', 'cni-lightning-child' ); ?></strong><br><input class="widefat" type="text" name="_lightning_child_page_header_subtext" value="<?php echo esc_attr( $subtext ); ?>"></label></p>
 	<?php
-	lightning_child_render_page_header_image_field( $post, '_lightning_child_page_header_image_id', __( '背景画像（PC）', 'lightning-child' ) );
-	lightning_child_render_page_header_image_field( $post, '_lightning_child_page_header_mobile_image_id', __( '背景画像（モバイル）', 'lightning-child' ) );
+	lightning_child_render_page_header_image_field( $post, '_lightning_child_page_header_image_id', __( '背景画像（PC）', 'cni-lightning-child' ) );
+	lightning_child_render_page_header_image_field( $post, '_lightning_child_page_header_mobile_image_id', __( '背景画像（モバイル）', 'cni-lightning-child' ) );
 	?>
 	<hr>
-	<p><label><input type="checkbox" name="_lightning_child_page_header_overlay_custom_enabled" value="1" <?php checked( $overlay_custom ); ?>> <?php esc_html_e( 'オーバーレイを個別設定する', 'lightning-child' ); ?></label></p>
-	<p><label><strong><?php esc_html_e( 'オーバーレイの色', 'lightning-child' ); ?></strong><br><input type="color" name="_lightning_child_page_header_overlay_color" value="<?php echo esc_attr( $overlay_color ); ?>"></label></p>
-	<p><label><strong><?php esc_html_e( 'オーバーレイの濃さ（不透明度）', 'lightning-child' ); ?></strong><br><input class="widefat" type="number" min="0" max="1" step="0.1" name="_lightning_child_page_header_overlay_opacity" value="<?php echo esc_attr( $overlay_opacity ); ?>"></label></p>
-	<p class="description"><?php esc_html_e( '個別設定を無効にすると、この投稿タイプの色と透明率を引き継ぎます。', 'lightning-child' ); ?></p>
+	<p><label><input type="checkbox" name="_lightning_child_page_header_overlay_custom_enabled" value="1" <?php checked( $overlay_custom ); ?>> <?php esc_html_e( 'オーバーレイを個別設定する', 'cni-lightning-child' ); ?></label></p>
+	<p><label><strong><?php esc_html_e( 'オーバーレイの色', 'cni-lightning-child' ); ?></strong><br><input type="color" name="_lightning_child_page_header_overlay_color" value="<?php echo esc_attr( $overlay_color ); ?>"></label></p>
+	<p><label><strong><?php esc_html_e( 'オーバーレイの濃さ（不透明度）', 'cni-lightning-child' ); ?></strong><br><input class="widefat" type="number" min="0" max="1" step="0.1" name="_lightning_child_page_header_overlay_opacity" value="<?php echo esc_attr( $overlay_opacity ); ?>"></label></p>
+	<p class="description"><?php esc_html_e( '個別設定を無効にすると、この投稿タイプの色と透明率を引き継ぎます。', 'cni-lightning-child' ); ?></p>
 	<?php
 }
 
@@ -413,8 +413,8 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 	$wp_customize->add_panel(
 		'lightning_child_page_header',
 		array(
-			'title'       => __( 'Lightning ページヘッダー設定', 'lightning-child' ),
-			'description' => __( 'ページ上部のタイトル領域を設定します。親テーマのページヘッダーをそのまま利用します。', 'lightning-child' ),
+			'title'       => __( 'Lightning ページヘッダー設定', 'cni-lightning-child' ),
+			'description' => __( 'ページ上部のタイトル領域を設定します。親テーマのページヘッダーをそのまま利用します。', 'cni-lightning-child' ),
 			'priority'    => 166,
 		)
 	);
@@ -422,7 +422,7 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 	$wp_customize->add_section(
 		'lightning_child_page_header_common',
 		array(
-			'title' => __( '共通', 'lightning-child' ),
+			'title' => __( '共通', 'cni-lightning-child' ),
 			'panel' => 'lightning_child_page_header',
 		)
 	);
@@ -437,16 +437,16 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_page_header_hide_all',
 		array(
-			'label'       => __( 'ページヘッダーをサイト全体で非表示にする', 'lightning-child' ),
-			'description' => __( '投稿・固定ページ・アーカイブなど、Lightningのページヘッダーをすべて非表示にします。', 'lightning-child' ),
+			'label'       => __( 'ページヘッダーをサイト全体で非表示にする', 'cni-lightning-child' ),
+			'description' => __( '投稿・固定ページ・アーカイブなど、Lightningのページヘッダーをすべて非表示にします。', 'cni-lightning-child' ),
 			'section'     => 'lightning_child_page_header_common',
 			'type'        => 'checkbox',
 		)
 	);
 
 	$image_settings = array(
-		'lightning_child_page_header_image'        => __( '背景画像（PC）', 'lightning-child' ),
-		'lightning_child_page_header_mobile_image' => __( '背景画像（モバイル）', 'lightning-child' ),
+		'lightning_child_page_header_image'        => __( '背景画像（PC）', 'cni-lightning-child' ),
+		'lightning_child_page_header_mobile_image' => __( '背景画像（モバイル）', 'cni-lightning-child' ),
 	);
 
 	foreach ( $image_settings as $setting_name => $label ) {
@@ -482,13 +482,13 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_page_header_attachment',
 		array(
-			'label'       => __( '背景画像の位置', 'lightning-child' ),
-			'description' => __( '「固定」は一部のモバイルブラウザーでは反映されません。', 'lightning-child' ),
+			'label'       => __( '背景画像の位置', 'cni-lightning-child' ),
+			'description' => __( '「固定」は一部のモバイルブラウザーでは反映されません。', 'cni-lightning-child' ),
 			'section'     => 'lightning_child_page_header_common',
 			'type'        => 'radio',
 			'choices'     => array(
-				'scroll' => __( '標準', 'lightning-child' ),
-				'fixed'  => __( '固定', 'lightning-child' ),
+				'scroll' => __( '標準', 'cni-lightning-child' ),
+				'fixed'  => __( '固定', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -503,7 +503,7 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 				'title'       => $post_type->labels->name,
 				'description' => sprintf(
 					/* translators: %s: post type label. */
-					__( '%sの個別ページと一覧に適用します。', 'lightning-child' ),
+					__( '%sの個別ページと一覧に適用します。', 'cni-lightning-child' ),
 					$post_type->labels->name
 				),
 				'panel'       => 'lightning_child_page_header',
@@ -521,13 +521,13 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 		$wp_customize->add_control(
 			$title_setting,
 			array(
-				'label'   => __( '表示するタイトル', 'lightning-child' ),
+				'label'   => __( '表示するタイトル', 'cni-lightning-child' ),
 				'section' => $section_id,
 				'type'    => 'radio',
 				'choices' => array(
-					'default'    => __( 'Lightning標準', 'lightning-child' ),
-					'post_type'  => __( '投稿タイプ名', 'lightning-child' ),
-					'post_title' => __( '個別ページのタイトル（一覧はLightning標準）', 'lightning-child' ),
+					'default'    => __( 'Lightning標準', 'cni-lightning-child' ),
+					'post_type'  => __( '投稿タイプ名', 'cni-lightning-child' ),
+					'post_title' => __( '個別ページのタイトル（一覧はLightning標準）', 'cni-lightning-child' ),
 				),
 			)
 		);
@@ -543,7 +543,7 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 		$wp_customize->add_control(
 			$text_setting,
 			array(
-				'label'   => __( 'サブタイトル', 'lightning-child' ),
+				'label'   => __( 'サブタイトル', 'cni-lightning-child' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -551,12 +551,12 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 
 		$post_type_images = array(
 			'image'        => array(
-				'label'       => __( '背景画像（PC）', 'lightning-child' ),
-				'description' => __( '未選択の場合は共通のPC画像を使用します。', 'lightning-child' ),
+				'label'       => __( '背景画像（PC）', 'cni-lightning-child' ),
+				'description' => __( '未選択の場合は共通のPC画像を使用します。', 'cni-lightning-child' ),
 			),
 			'mobile_image' => array(
-				'label'       => __( '背景画像（モバイル）', 'lightning-child' ),
-				'description' => __( '未選択の場合は、この投稿タイプのPC画像を使用します。', 'lightning-child' ),
+				'label'       => __( '背景画像（モバイル）', 'cni-lightning-child' ),
+				'description' => __( '未選択の場合は、この投稿タイプのPC画像を使用します。', 'cni-lightning-child' ),
 			),
 		);
 		foreach ( $post_type_images as $field => $image_control ) {
@@ -594,8 +594,8 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 			$wp_customize->add_control(
 				$hide_singular_setting,
 				array(
-					'label'       => __( '個別ページのページヘッダーを非表示にする', 'lightning-child' ),
-					'description' => __( 'この投稿タイプの詳細ページに適用します。', 'lightning-child' ),
+					'label'       => __( '個別ページのページヘッダーを非表示にする', 'cni-lightning-child' ),
+					'description' => __( 'この投稿タイプの詳細ページに適用します。', 'cni-lightning-child' ),
 					'section'     => $section_id,
 					'type'        => 'checkbox',
 				)
@@ -614,10 +614,10 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 			$wp_customize->add_control(
 				$hide_archive_setting,
 				array(
-					'label'       => __( '一覧・アーカイブのページヘッダーを非表示にする', 'lightning-child' ),
+					'label'       => __( '一覧・アーカイブのページヘッダーを非表示にする', 'cni-lightning-child' ),
 					'description' => 'post' === $post_type_name
-						? __( '投稿一覧、カテゴリー、タグ、日付、投稿者アーカイブに適用します。', 'lightning-child' )
-						: __( 'この投稿タイプのアーカイブに適用します。共有カスタム分類は対象外です。', 'lightning-child' ),
+						? __( '投稿一覧、カテゴリー、タグ、日付、投稿者アーカイブに適用します。', 'cni-lightning-child' )
+						: __( 'この投稿タイプのアーカイブに適用します。共有カスタム分類は対象外です。', 'cni-lightning-child' ),
 					'section'     => $section_id,
 					'type'        => 'checkbox',
 				)
@@ -625,9 +625,9 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 		}
 
 		$color_settings = array(
-			'text_color'    => __( '文字色', 'lightning-child' ),
-			'shadow_color'  => __( '文字の影の色', 'lightning-child' ),
-			'overlay_color' => __( 'オーバーレイの色', 'lightning-child' ),
+			'text_color'    => __( '文字色', 'cni-lightning-child' ),
+			'shadow_color'  => __( '文字の影の色', 'cni-lightning-child' ),
+			'overlay_color' => __( 'オーバーレイの色', 'cni-lightning-child' ),
 		);
 
 		foreach ( $color_settings as $field => $label ) {
@@ -662,13 +662,13 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 		$wp_customize->add_control(
 			$alignment_setting,
 			array(
-				'label'   => __( '文字の位置', 'lightning-child' ),
+				'label'   => __( '文字の位置', 'cni-lightning-child' ),
 				'section' => $section_id,
 				'type'    => 'radio',
 				'choices' => array(
-					'left'   => __( '左', 'lightning-child' ),
-					'center' => __( '中央', 'lightning-child' ),
-					'right'  => __( '右', 'lightning-child' ),
+					'left'   => __( '左', 'cni-lightning-child' ),
+					'center' => __( '中央', 'cni-lightning-child' ),
+					'right'  => __( '右', 'cni-lightning-child' ),
 				),
 			)
 		);
@@ -684,8 +684,8 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 		$wp_customize->add_control(
 			$height_setting,
 			array(
-				'label'       => __( '最小高さ', 'lightning-child' ),
-				'description' => __( '4〜30remの範囲で指定します。', 'lightning-child' ),
+				'label'       => __( '最小高さ', 'cni-lightning-child' ),
+				'description' => __( '4〜30remの範囲で指定します。', 'cni-lightning-child' ),
 				'section'     => $section_id,
 				'type'        => 'number',
 				'input_attrs' => array(
@@ -707,8 +707,8 @@ function lightning_child_customize_page_header_settings( $wp_customize ) {
 		$wp_customize->add_control(
 			$opacity_setting,
 			array(
-				'label'       => __( 'オーバーレイの濃さ（不透明度）', 'lightning-child' ),
-				'description' => __( '0（透明）から1（不透明）の数字で入力してください。', 'lightning-child' ),
+				'label'       => __( 'オーバーレイの濃さ（不透明度）', 'cni-lightning-child' ),
+				'description' => __( '0（透明）から1（不透明）の数字で入力してください。', 'cni-lightning-child' ),
 				'section'     => $section_id,
 				'type'        => 'number',
 				'input_attrs' => array(

@@ -1,0 +1,359 @@
+/*
+ * Lightning Child desktop mega menu.
+ * Tablet, touch-only and mobile environments retain Lightning's standard menu.
+ */
+
+.global-nav-list .lightning-child-mega-menu__media,
+.global-nav-list .lightning-child-mega-menu__arrow {
+	display: none;
+}
+
+@media (min-width: 1200px) and (hover: hover) and (pointer: fine) {
+	.lightning-child-mega-menu-enabled {
+		--lightning-child-mega-columns: 4;
+		--lightning-child-mega-image-ratio: 16 / 9;
+	}
+
+	.lightning-child-mega-menu-columns-2 {
+		--lightning-child-mega-columns: 2;
+	}
+
+	.lightning-child-mega-menu-columns-3 {
+		--lightning-child-mega-columns: 3;
+	}
+
+	.lightning-child-mega-menu-ratio-compact {
+		--lightning-child-mega-image-ratio: 2 / 1;
+	}
+
+	.lightning-child-mega-menu-ratio-relaxed {
+		--lightning-child-mega-image-ratio: 3 / 2;
+	}
+
+	.lightning-child-mega-menu-enabled #site-header-container {
+		position: relative;
+	}
+
+	.lightning-child-mega-menu-enabled .global-nav-list {
+		position: static;
+	}
+
+	.lightning-child-mega-menu-enabled .global-nav-list > .lightning-child-mega-menu-parent {
+		position: static;
+	}
+
+	.lightning-child-mega-menu-enabled .global-nav-list > .lightning-child-mega-menu-parent > .sub-menu {
+		display: grid;
+		grid-template-columns: repeat(var(--lightning-child-mega-columns), minmax(0, 1fr));
+		gap: 24px;
+		top: calc(100% - 2px);
+		left: 0;
+		width: 100%;
+		max-height: 80vh;
+		margin: 0;
+		padding: 32px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		box-sizing: border-box;
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+		background: var(--lightning-child-mega-menu-background, #ffffff);
+		border: 1px solid var(--vk-color-border, #e5e5e5);
+		border-radius: 0 0 12px 12px;
+		box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
+		transition:
+			opacity 160ms ease-out,
+			visibility 0s linear 140ms;
+	}
+
+	.lightning-child-mega-menu-enabled .global-nav-list > .lightning-child-mega-menu-parent:hover > .sub-menu,
+	.lightning-child-mega-menu-enabled .global-nav-list > .lightning-child-mega-menu-parent:focus-within > .sub-menu,
+	.lightning-child-mega-menu-enabled .global-nav-list > .lightning-child-mega-menu-parent.is-mega-menu-open > .sub-menu {
+		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
+		transition-delay: 0s;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-parent > .sub-menu > .lightning-child-mega-menu-item {
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		background: transparent;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-parent > .sub-menu > .lightning-child-mega-menu-item > a {
+		color: var(--vk-color-text-body, #333333);
+		background: transparent;
+		border: 0;
+		text-decoration: none;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__item-body {
+		display: flex;
+		align-items: center;
+		gap: 0.6em;
+		min-width: 0;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__title {
+		min-width: 0;
+		font-size: var(--lightning-child-mega-title-size, 16px);
+		font-weight: 600;
+		line-height: 1.5;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__arrow {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		width: 30px;
+		height: 30px;
+		margin-left: auto;
+		color: #ffffff;
+		background: var(--vk-color-primary, #337ab7);
+		border-radius: 50%;
+		font-size: 17px;
+		font-weight: 700;
+		line-height: 1;
+		transition: filter 160ms ease-out, transform 160ms ease-out;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item > a:hover .lightning-child-mega-menu__arrow,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item > a:focus .lightning-child-mega-menu__arrow {
+		filter: brightness(1.08);
+		box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-parent > .sub-menu > .lightning-child-mega-menu-item-has-children,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-parent > .sub-menu > .lightning-child-mega-menu-item-has-children:hover,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-parent > .sub-menu > .lightning-child-mega-menu-item-has-children:focus-within {
+		display: block !important;
+		position: relative;
+		background: transparent !important;
+		border-bottom: 0;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > a {
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children .lightning-child-mega-menu__arrow {
+		display: none;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > .acc-btn {
+		display: none !important;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__submenu-toggle {
+		position: absolute;
+		z-index: 3;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 42px;
+		height: 42px;
+		margin: 0;
+		padding: 0;
+		cursor: pointer;
+		color: #ffffff;
+		background: var(--lightning-child-mega-submenu-toggle, var(--vk-color-primary, #337ab7));
+		border: 2px solid rgba(255, 255, 255, 0.88);
+		border-radius: 50%;
+		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+		transition: filter 160ms ease-out, transform 160ms ease-out;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__submenu-toggle:hover {
+		filter: brightness(1.08);
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__submenu-toggle:focus-visible {
+		outline: 3px solid #ffffff;
+		outline-offset: 2px;
+		box-shadow: 0 0 0 5px var(--lightning-child-mega-submenu-toggle, var(--vk-color-primary, #337ab7));
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__submenu-toggle > span {
+		display: block;
+		width: 10px;
+		height: 10px;
+		margin-top: -5px;
+		border-right: 2px solid currentColor;
+		border-bottom: 2px solid currentColor;
+		transform: rotate(45deg);
+		transition: margin 180ms ease-out, transform 180ms ease-out;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__submenu-toggle.is-open > span {
+		margin-top: 5px;
+		transform: rotate(225deg);
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > .sub-menu {
+		position: static;
+		display: block;
+		grid-column: auto;
+		width: 100%;
+		max-height: 0 !important;
+		margin: 0;
+		padding: 0;
+		overflow: hidden !important;
+		visibility: hidden;
+		opacity: 0 !important;
+		background: var(--lightning-child-mega-submenu-background, #ffffff) !important;
+		border: 1px solid transparent;
+		border-radius: 8px;
+		box-shadow: none;
+		transition:
+			max-height 240ms ease-out,
+			margin-top 240ms ease-out,
+			opacity 180ms ease-out,
+			visibility 0s linear 240ms;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children.is-lightning-child-submenu-open > .sub-menu {
+		max-height: 60vh !important;
+		margin-top: 12px;
+		overflow-y: auto !important;
+		visibility: visible;
+		opacity: 1 !important;
+		border-color: var(--vk-color-border, #e5e5e5);
+		transition-delay: 0s;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > .sub-menu > .lightning-child-mega-menu-grandchild {
+		display: block;
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		border-bottom: 1px solid var(--vk-color-border, #e5e5e5);
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > .sub-menu > .lightning-child-mega-menu-grandchild:last-child {
+		border-bottom: 0;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > .sub-menu > .lightning-child-mega-menu-grandchild > a,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > .sub-menu > .lightning-child-mega-menu-grandchild > a:hover,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > .sub-menu > .lightning-child-mega-menu-grandchild > a:focus {
+		display: block;
+		padding: 14px 16px;
+		color: var(--lightning-child-mega-submenu-text, #111111) !important;
+		background: transparent;
+		border: 0;
+		font-size: 14px;
+		line-height: 1.5;
+		text-decoration: none;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > .sub-menu > .lightning-child-mega-menu-grandchild > a:hover,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > .sub-menu > .lightning-child-mega-menu-grandchild > a:focus-visible {
+		background: rgba(127, 127, 127, 0.12);
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-grandchild > .sub-menu,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-grandchild > .acc-btn {
+		display: none !important;
+	}
+
+	.lightning-child-mega-menu-layout-cards .lightning-child-mega-menu-parent > .sub-menu > .lightning-child-mega-menu-item > a {
+		display: block;
+		padding: 0;
+		transition: filter 180ms ease-out, transform 180ms ease-out;
+	}
+
+	.lightning-child-mega-menu-layout-cards .lightning-child-mega-menu__media {
+		display: block;
+		position: relative;
+		width: 100%;
+		aspect-ratio: var(--lightning-child-mega-image-ratio);
+		margin-bottom: 12px;
+		overflow: hidden;
+		background: var(--vk-color-border-hr, #f2f2f2);
+		border-radius: 8px;
+	}
+
+	.lightning-child-mega-menu-layout-cards .lightning-child-mega-menu__media::after {
+		position: absolute;
+		inset: 0;
+		background: rgba(0, 0, 0, 0);
+		content: "";
+		pointer-events: none;
+		transition: background-color 180ms ease-out;
+	}
+
+	.lightning-child-mega-menu-layout-cards .lightning-child-mega-menu__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		max-height: none;
+		margin: 0;
+		object-fit: cover;
+		transition: transform 180ms ease-out;
+	}
+
+	.lightning-child-mega-menu-layout-cards.lightning-child-mega-menu-hover-darken .lightning-child-mega-menu-item > a:hover .lightning-child-mega-menu__media::after,
+	.lightning-child-mega-menu-layout-cards.lightning-child-mega-menu-hover-darken .lightning-child-mega-menu-item > a:focus-visible .lightning-child-mega-menu__media::after {
+		background: rgba(0, 0, 0, 0.24);
+	}
+
+	.lightning-child-mega-menu-layout-cards.lightning-child-mega-menu-hover-zoom .lightning-child-mega-menu-item > a:hover .lightning-child-mega-menu__image,
+	.lightning-child-mega-menu-layout-cards.lightning-child-mega-menu-hover-zoom .lightning-child-mega-menu-item > a:focus-visible .lightning-child-mega-menu__image {
+		transform: scale(1.015);
+	}
+
+	.lightning-child-mega-menu-layout-cards.lightning-child-mega-menu-hover-lift .lightning-child-mega-menu-item > a:hover,
+	.lightning-child-mega-menu-layout-cards.lightning-child-mega-menu-hover-lift .lightning-child-mega-menu-item > a:focus-visible {
+		filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.14));
+		transform: translateY(-4px);
+	}
+
+	.lightning-child-mega-menu-layout-links .lightning-child-mega-menu-parent > .sub-menu {
+		gap: 0 40px;
+	}
+
+	.lightning-child-mega-menu-layout-links .lightning-child-mega-menu-parent > .sub-menu > .lightning-child-mega-menu-item > a {
+		display: flex;
+		align-items: center;
+		min-height: 64px;
+		padding: 12px 10px;
+		border-bottom: 1px solid var(--vk-color-border, #e5e5e5);
+	}
+
+	.lightning-child-mega-menu-layout-links .lightning-child-mega-menu__item-body {
+		width: 100%;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lightning-child-mega-menu-enabled .global-nav-list > .lightning-child-mega-menu-parent > .sub-menu,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__arrow,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__image,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__media::after,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item > a {
+		transition-duration: 0.01ms;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__submenu-toggle,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu__submenu-toggle > span,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item-has-children > .sub-menu {
+		transition-duration: 0.01ms;
+	}
+
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item > a:hover,
+	.lightning-child-mega-menu-enabled .lightning-child-mega-menu-item > a:focus-visible {
+		filter: none;
+		transform: none;
+	}
+
+	.lightning-child-mega-menu-hover-zoom .lightning-child-mega-menu-item > a:hover .lightning-child-mega-menu__image,
+	.lightning-child-mega-menu-hover-zoom .lightning-child-mega-menu-item > a:focus-visible .lightning-child-mega-menu__image {
+		transform: none;
+	}
+}

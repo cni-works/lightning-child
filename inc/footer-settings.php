@@ -26,8 +26,8 @@ function lightning_child_customize_footer_settings( $wp_customize ) {
 	$wp_customize->add_section(
 		'lightning_child_footer',
 		array(
-			'title'       => __( 'Lightning 子テーマ フッター', 'lightning-child' ),
-			'description' => __( 'Lightning標準フッターの配色とコピーライトを設定します。', 'lightning-child' ),
+			'title'       => __( 'Lightning 子テーマ フッター', 'cni-lightning-child' ),
+			'description' => __( 'Lightning標準フッターの配色とコピーライトを設定します。', 'cni-lightning-child' ),
 			'priority'    => 165,
 		)
 	);
@@ -45,7 +45,7 @@ function lightning_child_customize_footer_settings( $wp_customize ) {
 			$wp_customize,
 			'lightning_child_footer_background_color',
 			array(
-				'label'   => __( '背景色', 'lightning-child' ),
+				'label'   => __( '背景色', 'cni-lightning-child' ),
 				'section' => 'lightning_child_footer',
 			)
 		)
@@ -64,7 +64,7 @@ function lightning_child_customize_footer_settings( $wp_customize ) {
 			$wp_customize,
 			'lightning_child_footer_text_color',
 			array(
-				'label'   => __( '文字色', 'lightning-child' ),
+				'label'   => __( '文字色', 'cni-lightning-child' ),
 				'section' => 'lightning_child_footer',
 			)
 		)
@@ -81,8 +81,8 @@ function lightning_child_customize_footer_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_copyright_text',
 		array(
-			'label'       => __( 'コピーライト', 'lightning-child' ),
-			'description' => __( '{year} は現在年、{site_name} はサイト名へ置き換わります。空欄にすると非表示になります。', 'lightning-child' ),
+			'label'       => __( 'コピーライト', 'cni-lightning-child' ),
+			'description' => __( '{year} は現在年、{site_name} はサイト名へ置き換わります。空欄にすると非表示になります。', 'cni-lightning-child' ),
 			'section'     => 'lightning_child_footer',
 			'type'        => 'text',
 		)

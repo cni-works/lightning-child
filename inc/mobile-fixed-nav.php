@@ -71,7 +71,7 @@ function lightning_child_sanitize_mobile_menu_footer_part( $value ) {
  * @return array<string, string>
  */
 function lightning_child_get_mobile_menu_footer_choices() {
-	$choices = array( 'current' => __( '通常フッター設定と同じ', 'lightning-child' ) );
+	$choices = array( 'current' => __( '通常フッター設定と同じ', 'cni-lightning-child' ) );
 	if ( ! function_exists( 'lightning_child_get_template_part_choices' ) ) {
 		return $choices;
 	}
@@ -106,7 +106,7 @@ function lightning_child_sanitize_mobile_menu_pattern_id( $value ) {
  * @return array<int, string>
  */
 function lightning_child_get_mobile_menu_pattern_choices() {
-	$choices = array( 0 => __( '選択してください', 'lightning-child' ) );
+	$choices = array( 0 => __( '選択してください', 'cni-lightning-child' ) );
 	$patterns = get_posts(
 		array(
 			'post_type'              => 'wp_block',
@@ -126,7 +126,7 @@ function lightning_child_get_mobile_menu_pattern_choices() {
 			? $title
 			: sprintf(
 				/* translators: %d: pattern post ID. */
-				__( '名称未設定のパターン（ID: %d）', 'lightning-child' ),
+				__( '名称未設定のパターン（ID: %d）', 'cni-lightning-child' ),
 				$pattern->ID
 			);
 	}
@@ -146,8 +146,8 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 	$wp_customize->add_section(
 		$section_id,
 		array(
-			'title'       => __( 'Lightning モバイル固定ナビ', 'lightning-child' ),
-			'description' => __( 'スマートフォン画面の下部へ固定ナビを表示します。初期状態では表示されません。', 'lightning-child' ),
+			'title'       => __( 'Lightning モバイル固定ナビ', 'cni-lightning-child' ),
+			'description' => __( 'スマートフォン画面の下部へ固定ナビを表示します。初期状態では表示されません。', 'cni-lightning-child' ),
 			'priority'    => 168,
 		)
 	);
@@ -162,7 +162,7 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_mobile_fixed_nav_enabled',
 		array(
-			'label'   => __( 'モバイル固定ナビを表示する', 'lightning-child' ),
+			'label'   => __( 'モバイル固定ナビを表示する', 'cni-lightning-child' ),
 			'section' => $section_id,
 			'type'    => 'checkbox',
 		)
@@ -178,8 +178,8 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_mobile_fixed_nav_show_menu',
 		array(
-			'label'       => __( '左端にハンバーガーメニューを表示する', 'lightning-child' ),
-			'description' => __( '下の設定で選択した内容を左から開きます。表示できる内容がない場合は項目を出力しません。', 'lightning-child' ),
+			'label'       => __( '左端にハンバーガーメニューを表示する', 'cni-lightning-child' ),
+			'description' => __( '下の設定で選択した内容を左から開きます。表示できる内容がない場合は項目を出力しません。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'checkbox',
 		)
@@ -195,13 +195,13 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_mobile_fixed_nav_menu_source',
 		array(
-			'label'       => __( 'ハンバーガーメニューの表示内容', 'lightning-child' ),
-			'description' => __( '既存サイトとの互換性のため、初期値は選択中のフッターテンプレートパーツです。', 'lightning-child' ),
+			'label'       => __( 'ハンバーガーメニューの表示内容', 'cni-lightning-child' ),
+			'description' => __( '既存サイトとの互換性のため、初期値は選択中のフッターテンプレートパーツです。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'radio',
 			'choices'     => array(
-				'footer'  => __( 'フッターテンプレートパーツ', 'lightning-child' ),
-				'pattern' => __( 'マイパターン', 'lightning-child' ),
+				'footer'  => __( 'フッターテンプレートパーツ', 'cni-lightning-child' ),
+				'pattern' => __( 'マイパターン', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -216,8 +216,8 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_mobile_fixed_nav_menu_footer_part',
 		array(
-			'label'       => __( '表示するフッターテンプレートパーツ', 'lightning-child' ),
-			'description' => __( 'ハンバーガー専用に、通常フッターとは別のフッターテンプレートパーツを選択できます。', 'lightning-child' ),
+			'label'       => __( '表示するフッターテンプレートパーツ', 'cni-lightning-child' ),
+			'description' => __( 'ハンバーガー専用に、通常フッターとは別のフッターテンプレートパーツを選択できます。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'select',
 			'choices'     => lightning_child_get_mobile_menu_footer_choices(),
@@ -234,8 +234,8 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_mobile_fixed_nav_menu_pattern_id',
 		array(
-			'label'       => __( '表示するマイパターン', 'lightning-child' ),
-			'description' => __( '「マイパターン」を選んだ場合に使用します。新しく作成した場合はカスタマイザーを開き直してください。', 'lightning-child' ),
+			'label'       => __( '表示するマイパターン', 'cni-lightning-child' ),
+			'description' => __( '「マイパターン」を選んだ場合に使用します。新しく作成した場合はカスタマイザーを開き直してください。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'select',
 			'choices'     => lightning_child_get_mobile_menu_pattern_choices(),
@@ -244,12 +244,12 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 
 	$menu_text_settings = array(
 		'lightning_child_mobile_fixed_nav_menu_label' => array(
-			'label'             => __( 'メニューボタンのテキスト', 'lightning-child' ),
-			'default'           => __( 'メニュー', 'lightning-child' ),
+			'label'             => __( 'メニューボタンのテキスト', 'cni-lightning-child' ),
+			'default'           => __( 'メニュー', 'cni-lightning-child' ),
 			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'lightning_child_mobile_fixed_nav_menu_icon'  => array(
-			'label'             => __( 'メニューボタンのFont Awesomeクラス', 'lightning-child' ),
+			'label'             => __( 'メニューボタンのFont Awesomeクラス', 'cni-lightning-child' ),
 			'default'           => 'fa-solid fa-bars',
 			'sanitize_callback' => 'lightning_child_sanitize_font_awesome_classes',
 		),
@@ -267,7 +267,7 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 			$setting_name,
 			array(
 				'label'       => $setting['label'],
-				'description' => false !== strpos( $setting_name, '_icon' ) ? __( '例: fa-solid fa-bars（HTMLタグは入力しません）', 'lightning-child' ) : '',
+				'description' => false !== strpos( $setting_name, '_icon' ) ? __( '例: fa-solid fa-bars（HTMLタグは入力しません）', 'cni-lightning-child' ) : '',
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -284,13 +284,13 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_mobile_fixed_nav_item_count',
 		array(
-			'label'       => __( '通常リンクの項目数', 'lightning-child' ),
-			'description' => __( '5項目ではメニューボタンを含めて最大6ボタンになります。', 'lightning-child' ),
+			'label'       => __( '通常リンクの項目数', 'cni-lightning-child' ),
+			'description' => __( '5項目ではメニューボタンを含めて最大6ボタンになります。', 'cni-lightning-child' ),
 			'section'     => $section_id,
 			'type'        => 'radio',
 			'choices'     => array(
-				4 => __( '4項目', 'lightning-child' ),
-				5 => __( '5項目', 'lightning-child' ),
+				4 => __( '4項目', 'cni-lightning-child' ),
+				5 => __( '5項目', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -310,7 +310,7 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 			array(
 				'label'   => sprintf(
 					/* translators: %d: button number. */
-					__( 'ボタン%d：リンクテキスト', 'lightning-child' ),
+					__( 'ボタン%d：リンクテキスト', 'cni-lightning-child' ),
 					$index
 				),
 				'section' => $section_id,
@@ -330,10 +330,10 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 			array(
 				'label'       => sprintf(
 					/* translators: %d: button number. */
-					__( 'ボタン%d：Font Awesomeクラス', 'lightning-child' ),
+					__( 'ボタン%d：Font Awesomeクラス', 'cni-lightning-child' ),
 					$index
 				),
-				'description' => __( '例: fa-solid fa-house / fa-brands fa-line', 'lightning-child' ),
+				'description' => __( '例: fa-solid fa-house / fa-brands fa-line', 'cni-lightning-child' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -351,10 +351,10 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 			array(
 				'label'       => sprintf(
 					/* translators: %d: button number. */
-					__( 'ボタン%d：リンクURL', 'lightning-child' ),
+					__( 'ボタン%d：リンクURL', 'cni-lightning-child' ),
 					$index
 				),
-				'description' => __( '例: /company/、https://example.com/、tel:0000000000', 'lightning-child' ),
+				'description' => __( '例: /company/、https://example.com/、tel:0000000000', 'cni-lightning-child' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -372,7 +372,7 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 			array(
 				'label'   => sprintf(
 					/* translators: %d: button number. */
-					__( 'ボタン%d：リンク先を別ウィンドウで開く', 'lightning-child' ),
+					__( 'ボタン%d：リンク先を別ウィンドウで開く', 'cni-lightning-child' ),
 					$index
 				),
 				'section' => $section_id,
@@ -383,31 +383,31 @@ function lightning_child_customize_mobile_fixed_nav( $wp_customize ) {
 
 	$color_settings = array(
 		'lightning_child_mobile_fixed_nav_background_color' => array(
-			'label'   => __( '背景色', 'lightning-child' ),
+			'label'   => __( '背景色', 'cni-lightning-child' ),
 			'default' => '#333333',
 		),
 		'lightning_child_mobile_fixed_nav_text_color'       => array(
-			'label'   => __( '文字・アイコン色', 'lightning-child' ),
+			'label'   => __( '文字・アイコン色', 'cni-lightning-child' ),
 			'default' => '#ffffff',
 		),
 		'lightning_child_mobile_fixed_nav_active_background_color' => array(
-			'label'   => __( '現在ページの背景色', 'lightning-child' ),
+			'label'   => __( '現在ページの背景色', 'cni-lightning-child' ),
 			'default' => '#1a1a1a',
 		),
 		'lightning_child_mobile_fixed_nav_active_text_color' => array(
-			'label'   => __( '現在ページの文字・アイコン色', 'lightning-child' ),
+			'label'   => __( '現在ページの文字・アイコン色', 'cni-lightning-child' ),
 			'default' => '#ffffff',
 		),
 		'lightning_child_mobile_fixed_nav_border_color'     => array(
-			'label'   => __( '上端の境界線色', 'lightning-child' ),
+			'label'   => __( '上端の境界線色', 'cni-lightning-child' ),
 			'default' => '#555555',
 		),
 		'lightning_child_mobile_menu_drawer_background_color' => array(
-			'label'   => __( 'ハンバーガー画面の背景色', 'lightning-child' ),
+			'label'   => __( 'ハンバーガー画面の背景色', 'cni-lightning-child' ),
 			'default' => '#ffffff',
 		),
 		'lightning_child_mobile_menu_drawer_text_color' => array(
-			'label'   => __( 'ハンバーガー画面の文字色', 'lightning-child' ),
+			'label'   => __( 'ハンバーガー画面の文字色', 'cni-lightning-child' ),
 			'default' => '#333333',
 		),
 	);
@@ -660,7 +660,7 @@ function lightning_child_render_mobile_fixed_nav() {
 	$total_items = count( $items ) + ( $show_menu ? 1 : 0 );
 	$menu_source = $show_menu ? lightning_child_get_mobile_menu_content_source() : array();
 	?>
-	<nav class="lightning-child-mobile-fixed-nav<?php echo 6 <= $total_items ? ' lightning-child-mobile-fixed-nav--compact' : ''; ?>" aria-label="<?php esc_attr_e( 'モバイル固定ナビ', 'lightning-child' ); ?>" style="--lightning-child-mobile-fixed-nav-items:<?php echo esc_attr( $total_items ); ?>">
+	<nav class="lightning-child-mobile-fixed-nav<?php echo 6 <= $total_items ? ' lightning-child-mobile-fixed-nav--compact' : ''; ?>" aria-label="<?php esc_attr_e( 'モバイル固定ナビ', 'cni-lightning-child' ); ?>" style="--lightning-child-mobile-fixed-nav-items:<?php echo esc_attr( $total_items ); ?>">
 		<ul class="lightning-child-mobile-fixed-nav__list">
 			<?php if ( $show_menu ) : ?>
 				<li class="lightning-child-mobile-fixed-nav__item">
@@ -671,7 +671,7 @@ function lightning_child_render_mobile_fixed_nav() {
 						);
 						lightning_child_the_mobile_fixed_nav_icon( $menu_icon );
 						?>
-						<span class="lightning-child-mobile-fixed-nav__label"><?php echo esc_html( get_theme_mod( 'lightning_child_mobile_fixed_nav_menu_label', __( 'メニュー', 'lightning-child' ) ) ); ?></span>
+						<span class="lightning-child-mobile-fixed-nav__label"><?php echo esc_html( get_theme_mod( 'lightning_child_mobile_fixed_nav_menu_label', __( 'メニュー', 'cni-lightning-child' ) ) ); ?></span>
 					</a>
 				</li>
 			<?php endif; ?>
@@ -688,10 +688,10 @@ function lightning_child_render_mobile_fixed_nav() {
 		</ul>
 	</nav>
 	<?php if ( $show_menu ) : ?>
-		<aside id="lightning-child-mobile-menu-drawer" class="lightning-child-mobile-menu-drawer" aria-label="<?php esc_attr_e( 'ハンバーガーメニュー', 'lightning-child' ); ?>">
+		<aside id="lightning-child-mobile-menu-drawer" class="lightning-child-mobile-menu-drawer" aria-label="<?php esc_attr_e( 'ハンバーガーメニュー', 'cni-lightning-child' ); ?>">
 			<button class="lightning-child-mobile-menu-drawer__close" type="button" data-lightning-child-menu-close>
 				<span aria-hidden="true">&times;</span>
-				<span class="screen-reader-text"><?php esc_html_e( 'メニューを閉じる', 'lightning-child' ); ?></span>
+				<span class="screen-reader-text"><?php esc_html_e( 'メニューを閉じる', 'cni-lightning-child' ); ?></span>
 			</button>
 			<div class="lightning-child-mobile-menu-drawer__content">
 				<?php lightning_child_render_mobile_menu_content( $menu_source ); ?>

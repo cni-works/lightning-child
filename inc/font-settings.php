@@ -18,36 +18,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 function lightning_child_get_font_sets() {
 	return array(
 		'system-sans'     => array(
-			'label' => __( 'OS標準サンセリフ', 'lightning-child' ),
+			'label' => __( 'OS標準サンセリフ', 'cni-lightning-child' ),
 			'stack' => '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
 		),
 		'japanese-gothic' => array(
-			'label' => __( '日本語ゴシック（端末標準）', 'lightning-child' ),
+			'label' => __( '日本語ゴシック（端末標準）', 'cni-lightning-child' ),
 			'stack' => '"Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, Meiryo, sans-serif',
 		),
 		'japanese-mincho' => array(
-			'label' => __( '日本語明朝（端末標準）', 'lightning-child' ),
+			'label' => __( '日本語明朝（端末標準）', 'cni-lightning-child' ),
 			'stack' => '"Hiragino Mincho ProN", "Yu Mincho", YuMincho, serif',
 		),
 		'hiragino-kaku'   => array(
-			'label' => __( 'ヒラギノ角ゴ', 'lightning-child' ),
+			'label' => __( 'ヒラギノ角ゴ', 'cni-lightning-child' ),
 			'stack' => '"Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif',
 		),
 		'yu-gothic'       => array(
-			'label' => __( '游ゴシック', 'lightning-child' ),
+			'label' => __( '游ゴシック', 'cni-lightning-child' ),
 			'stack' => '"Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", sans-serif',
 		),
 		'meiryo'          => array(
-			'label' => __( 'メイリオ', 'lightning-child' ),
+			'label' => __( 'メイリオ', 'cni-lightning-child' ),
 			'stack' => 'Meiryo, "Hiragino Kaku Gothic ProN", sans-serif',
 		),
 		'noto-sans-jp'    => array(
-			'label'         => __( 'Noto Sans JP（Google Fonts）', 'lightning-child' ),
+			'label'         => __( 'Noto Sans JP（Google Fonts）', 'cni-lightning-child' ),
 			'stack'         => '"Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, Meiryo, sans-serif',
 			'google_family' => 'Noto Sans JP:wght@400;700',
 		),
 		'noto-serif-jp'   => array(
-			'label'         => __( 'Noto Serif JP（Google Fonts）', 'lightning-child' ),
+			'label'         => __( 'Noto Serif JP（Google Fonts）', 'cni-lightning-child' ),
 			'stack'         => '"Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", YuMincho, serif',
 			'google_family' => 'Noto Serif JP:wght@400;700',
 		),
@@ -66,22 +66,22 @@ function lightning_child_get_font_locations() {
 	return array(
 		'body'        => array(
 			'setting' => 'lightning_child_font_set',
-			'label'   => __( '本文テキスト', 'lightning-child' ),
+			'label'   => __( '本文テキスト', 'cni-lightning-child' ),
 			'default' => 'system-sans',
 		),
 		'title'       => array(
 			'setting' => 'lightning_child_font_title',
-			'label'   => __( 'タイトル・見出し', 'lightning-child' ),
+			'label'   => __( 'タイトル・見出し', 'cni-lightning-child' ),
 			'default' => 'inherit',
 		),
 		'global_nav'  => array(
 			'setting' => 'lightning_child_font_global_nav',
-			'label'   => __( 'グローバルメニュー', 'lightning-child' ),
+			'label'   => __( 'グローバルメニュー', 'cni-lightning-child' ),
 			'default' => 'inherit',
 		),
 		'header_logo' => array(
 			'setting' => 'lightning_child_font_header_logo',
-			'label'   => __( 'ヘッダーロゴ（文字表示時）', 'lightning-child' ),
+			'label'   => __( 'ヘッダーロゴ（文字表示時）', 'cni-lightning-child' ),
 			'default' => 'inherit',
 		),
 	);
@@ -190,8 +190,8 @@ function lightning_child_customize_font_settings( $wp_customize ) {
 	$wp_customize->add_section(
 		'lightning_child_typography',
 		array(
-			'title'       => __( 'Lightning フォント設定', 'lightning-child' ),
-			'description' => __( '場所ごとに書体を選択できます。Google Fontsを選択した場合だけ外部フォント（通常・太字）を読み込みます。', 'lightning-child' ),
+			'title'       => __( 'Lightning フォント設定', 'cni-lightning-child' ),
+			'description' => __( '場所ごとに書体を選択できます。Google Fontsを選択した場合だけ外部フォント（通常・太字）を読み込みます。', 'cni-lightning-child' ),
 			'priority'    => 167,
 		)
 	);
@@ -205,7 +205,7 @@ function lightning_child_customize_font_settings( $wp_customize ) {
 		$is_body = 'body' === $location;
 		$choices = $font_choices;
 		if ( ! $is_body ) {
-			$choices = array( 'inherit' => __( '本文テキストと同じ', 'lightning-child' ) ) + $choices;
+			$choices = array( 'inherit' => __( '本文テキストと同じ', 'cni-lightning-child' ) ) + $choices;
 		}
 
 		$wp_customize->add_setting(
@@ -229,8 +229,8 @@ function lightning_child_customize_font_settings( $wp_customize ) {
 	}
 
 	$weight_settings = array(
-		'lightning_child_font_title_weight'      => __( 'タイトル・見出しの太さ', 'lightning-child' ),
-		'lightning_child_font_global_nav_weight' => __( 'グローバルメニューの太さ', 'lightning-child' ),
+		'lightning_child_font_title_weight'      => __( 'タイトル・見出しの太さ', 'cni-lightning-child' ),
+		'lightning_child_font_global_nav_weight' => __( 'グローバルメニューの太さ', 'cni-lightning-child' ),
 	);
 	foreach ( $weight_settings as $setting_name => $label ) {
 		$wp_customize->add_setting(
@@ -248,7 +248,7 @@ function lightning_child_customize_font_settings( $wp_customize ) {
 				'section' => 'lightning_child_typography',
 				'type'    => 'select',
 				'choices' => array(
-					'inherit' => __( 'Lightning標準', 'lightning-child' ),
+					'inherit' => __( 'Lightning標準', 'cni-lightning-child' ),
 					'400'     => '400',
 					'700'     => '700',
 				),

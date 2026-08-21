@@ -1,12 +1,13 @@
 /*
-Theme Name: Lightning Child
+Theme Name: CNI Lightning Child
 Description: 無料テーマLightning（現行G3世代）用の開発・カスタマイズ子テーマ
 Author: Oishi Naoto
 Template: lightning
 Version: 0.7.2
+Update URI: https://github.com/cni-works/cni-lightning-child
 Requires at least: 6.5
 Requires PHP: 7.4
-Text Domain: lightning-child
+Text Domain: cni-lightning-child
 */
 
 /* サイト固有のCSSは、目的ごとにコメントを付けて以下へ追加します。 */

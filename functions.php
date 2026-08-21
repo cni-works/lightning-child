@@ -96,6 +96,49 @@ function lightning_child_is_feature_enabled( $feature ) {
 }
 
 /**
+ * Registers the GitHub Release updater for this child theme.
+ *
+ * GitHub Releases are the distribution source. WordPress installs an update
+ * only through its own standard theme-update process.
+ *
+ * @return void
+ */
+function lightning_child_register_github_updater() {
+	$updater_file = get_stylesheet_directory() . '/inc/updater/class-github-release-updater.php';
+
+	if ( ! is_readable( $updater_file ) ) {
+		return;
+	}
+
+	require_once $updater_file;
+
+	$theme = wp_get_theme();
+	if ( ! $theme->exists() ) {
+		return;
+	}
+
+	new \CniWorks\CniLightningChild\Updater\GitHub_Release_Updater(
+		array(
+			'type'          => 'theme',
+			'owner'         => 'cni-works',
+			'repository'    => 'cni-lightning-child',
+			'slug'          => 'cni-lightning-child',
+			'stylesheet'    => get_stylesheet(),
+			'version'       => $theme->get( 'Version' ),
+			'update_uri'    => $theme->get( 'UpdateURI' ),
+			'requires'      => $theme->get( 'RequiresWP' ),
+			'requires_php'  => $theme->get( 'RequiresPHP' ),
+			'cache_hours'   => 12,
+			'failure_hours' => 1,
+			'timeout'       => 5,
+		)
+	);
+}
+add_action( 'after_setup_theme', 'lightning_child_register_github_updater', 1 );
+
+require_once get_stylesheet_directory() . '/inc/theme-settings-migration.php';
+
+/**
  * Show administrators when emergency safe mode is active.
  *
  * @return void
@@ -106,7 +149,7 @@ function lightning_child_safe_mode_admin_notice() {
 	}
 
 	echo '<div class="notice notice-warning"><p>';
-	echo esc_html__( 'Lightning Child のセーフモードが有効です。更新依存の強い拡張機能を停止し、Lightning標準表示を優先しています。', 'lightning-child' );
+	echo esc_html__( 'Lightning Child のセーフモードが有効です。更新依存の強い拡張機能を停止し、Lightning標準表示を優先しています。', 'cni-lightning-child' );
 	echo '</p></div>';
 }
 add_action( 'admin_notices', 'lightning_child_safe_mode_admin_notice' );
@@ -183,6 +226,7 @@ if ( lightning_child_is_feature_enabled( 'page_header' ) ) {
 
 if ( lightning_child_is_feature_enabled( 'header_enhancements' ) ) {
 	require_once get_stylesheet_directory() . '/inc/header-settings.php';
+	require_once get_stylesheet_directory() . '/inc/mega-menu.php';
 }
 
 if ( lightning_child_is_feature_enabled( 'mobile_fixed_nav' ) ) {

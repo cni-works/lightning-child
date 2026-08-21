@@ -131,10 +131,10 @@ function lightning_child_sanitize_footer_template_part_selection( $value ) {
 function lightning_child_get_template_part_choices( $area ) {
 	$default_slug = lightning_child_get_default_template_part_slug( $area );
 	$default_label = 'header' === $area
-		? __( 'ヘッダー', 'lightning-child' )
-		: __( 'フッター', 'lightning-child' );
+		? __( 'ヘッダー', 'cni-lightning-child' )
+		: __( 'フッター', 'cni-lightning-child' );
 	$choices = array(
-		'standard' => __( 'Lightning標準', 'lightning-child' ),
+		'standard' => __( 'Lightning標準', 'cni-lightning-child' ),
 		'block'    => $default_label,
 	);
 	$additional_choices = array();
@@ -156,7 +156,7 @@ function lightning_child_get_template_part_choices( $area ) {
 		} else {
 			$additional_choices[ 'part:' . $slug ] = sprintf(
 				/* translators: 1: template part title, 2: template part slug. */
-				__( '%1$s（%2$s）', 'lightning-child' ),
+				__( '%1$s（%2$s）', 'cni-lightning-child' ),
 				$title,
 				$slug
 			);
@@ -236,12 +236,12 @@ function lightning_child_get_template_part_mode( $area ) {
 function lightning_child_customize_block_template_parts( $wp_customize ) {
 	$areas = array(
 		'header' => array(
-			'label'             => __( '使用するヘッダー', 'lightning-child' ),
+			'label'             => __( '使用するヘッダー', 'cni-lightning-child' ),
 			'section'           => 'lightning_child_header',
 			'sanitize_callback' => 'lightning_child_sanitize_header_template_part_selection',
 		),
 		'footer' => array(
-			'label'             => __( '使用するフッター', 'lightning-child' ),
+			'label'             => __( '使用するフッター', 'cni-lightning-child' ),
 			'section'           => 'lightning_child_footer',
 			'sanitize_callback' => 'lightning_child_sanitize_footer_template_part_selection',
 		),
@@ -262,7 +262,7 @@ function lightning_child_customize_block_template_parts( $wp_customize ) {
 			$setting_name,
 			array(
 				'label'       => $control['label'],
-				'description' => __( '「外観 → デザイン → パターン」のテンプレートパーツから選択できます。作成後はカスタマイザーを開き直してください。', 'lightning-child' ),
+				'description' => __( '「外観 → デザイン → パターン」のテンプレートパーツから選択できます。作成後はカスタマイザーを開き直してください。', 'cni-lightning-child' ),
 				'section'     => $control['section'],
 				'type'        => 'select',
 				'choices'     => lightning_child_get_template_part_choices( $area ),

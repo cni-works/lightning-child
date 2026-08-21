@@ -14,10 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function lightning_child_get_page_visibility_fields() {
 	return array(
-		'_lightning_child_hide_site_header' => __( 'ヘッダーを表示しない', 'lightning-child' ),
-		'_lightning_child_hide_page_header' => __( 'ページヘッダーを表示しない', 'lightning-child' ),
-		'_lightning_child_hide_breadcrumb'  => __( 'パンくずリストを表示しない', 'lightning-child' ),
-		'_lightning_child_hide_site_footer' => __( 'フッターを表示しない', 'lightning-child' ),
+		'_lightning_child_hide_site_header' => __( 'ヘッダーを表示しない', 'cni-lightning-child' ),
+		'_lightning_child_hide_page_header' => __( 'ページヘッダーを表示しない', 'cni-lightning-child' ),
+		'_lightning_child_hide_breadcrumb'  => __( 'パンくずリストを表示しない', 'cni-lightning-child' ),
+		'_lightning_child_hide_site_footer' => __( 'フッターを表示しない', 'cni-lightning-child' ),
 	);
 }
 
@@ -93,7 +93,7 @@ function lightning_child_enqueue_page_visibility_panel() {
 		'lightning-child-page-visibility-panel',
 		'lightningChildPageVisibility',
 		array(
-			'panelTitle' => __( 'Lightning 表示設定', 'lightning-child' ),
+			'panelTitle' => __( 'Lightning 表示設定', 'cni-lightning-child' ),
 			'fields'     => lightning_child_get_page_visibility_fields(),
 		)
 	);
@@ -108,7 +108,7 @@ add_action( 'enqueue_block_editor_assets', 'lightning_child_enqueue_page_visibil
 function lightning_child_add_page_visibility_meta_box() {
 	add_meta_box(
 		'lightning_child_page_visibility',
-		__( 'Lightning 表示設定', 'lightning-child' ),
+		__( 'Lightning 表示設定', 'cni-lightning-child' ),
 		'lightning_child_render_page_visibility_meta_box',
 		'page',
 		'side',

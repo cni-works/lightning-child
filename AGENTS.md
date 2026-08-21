@@ -1,4 +1,4 @@
-# Lightning Child 作業ルール
+# CNI Lightning Child 作業ルール
 
 - このフォルダだけを独立したLightning子テーマとして扱います。
 - 親テーマLightningのファイルは直接変更しません。
@@ -15,4 +15,32 @@
 - 大きな一括変更を避け、CSS、PHP、JavaScript、テンプレートを目的ごとに小さく変更します。
 - PHPではWordPress標準API、適切なエスケープ、サニタイズ、権限・nonce確認を使用します。
 - 変更後は、変更ファイル、確認結果、WordPress上の手動確認手順を説明します。
-- GitHubへの接続、push、公開、本番サイトへの反映は行いません。
+- 本番サイトへの反映は行いません。
+
+## Git・GitHub運用
+
+### 通常の開発
+
+- ローカルファイルの変更と、変更内容に応じたPHP、JavaScript、JSON、PowerShellなどの構文検査まで行います。
+- 明示指示がない限り、`git add`、commit、push、Pull Request作成、Version変更、ZIP生成、`main`へのマージは行いません。
+
+### 「バックアップして」と指示された場合
+
+- 変更内容を確認し、PHP、JavaScript、JSONなど必要な構文検査を行います。
+- 不要ファイル、機密情報、案件固有情報が含まれていないことを確認します。
+- 現在のブランチが`main`の場合は、変更内容に適した作業ブランチを作成します。
+- 対象ファイルを`git add`し、内容に合ったメッセージでcommitします。
+- 現在の作業ブランチをpushします。
+- Pull Request作成、Version変更、ZIP生成、`main`へのマージは行いません。
+- GitHub CLI（`gh`）が未導入でも停止せず、通常の`git`コマンドでpushまで行います。
+
+### 「リリースして」と指示された場合
+
+- 変更内容と必要な構文を確認します。
+- Versionが指定されていない場合は次のVersion案を提示し、確認を得るまでVersionを変更しません。
+- 確認済みのVersionへ`style.css`の`Version`を更新します。
+- `build-release.ps1`を実行し、`release/cni-lightning-child-{version}.zip`を生成して内容を検証します。
+- 対象ファイルを`git add`し、内容に合ったメッセージでcommitして、現在の作業ブランチをpushします。
+- GitHub CLI（`gh`）が利用できる場合のみCodexがPull Requestを作成します。
+- `gh`が利用できない場合はpushまで完了し、Pull Request作成のみ未実施として報告します。
+- 明示許可があるまで`main`へマージしません。

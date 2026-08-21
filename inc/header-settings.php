@@ -76,6 +76,19 @@ function lightning_child_sanitize_mobile_logo_position( $value ) {
 }
 
 /**
+ * Sanitize the viewport width at which the header widget is shown.
+ *
+ * @param mixed $value Submitted value.
+ * @return int
+ */
+function lightning_child_sanitize_header_widget_breakpoint( $value ) {
+	$value   = absint( $value );
+	$choices = array( 992, 1200, 1400 );
+
+	return in_array( $value, $choices, true ) ? $value : 1400;
+}
+
+/**
  * Determine whether controls for Lightning's standard header should be active.
  *
  * @return bool
@@ -93,6 +106,16 @@ function lightning_child_is_standard_header_mode() {
 function lightning_child_is_contact_header_layout() {
 	return lightning_child_is_standard_header_mode()
 		&& 'contact' === lightning_child_sanitize_header_layout( get_theme_mod( 'lightning_child_header_layout', 'standard' ) );
+}
+
+/**
+ * Determine whether the widget header layout is selected.
+ *
+ * @return bool
+ */
+function lightning_child_is_widget_header_layout() {
+	return lightning_child_is_standard_header_mode()
+		&& 'widget' === lightning_child_sanitize_header_layout( get_theme_mod( 'lightning_child_header_layout', 'standard' ) );
 }
 
 /**
@@ -117,8 +140,8 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_section(
 		'lightning_child_header',
 		array(
-			'title'       => __( 'Lightning ヘッダー設定', 'lightning-child' ),
-			'description' => __( 'Lightning標準ヘッダーのレイアウト、固定方法、配色、トップページ透過を設定します。', 'lightning-child' ),
+			'title'       => __( 'Lightning ヘッダー設定', 'cni-lightning-child' ),
+			'description' => __( 'Lightning標準ヘッダーのレイアウト、固定方法、配色、トップページ透過を設定します。', 'cni-lightning-child' ),
 			'priority'    => 164,
 		)
 	);
@@ -134,15 +157,39 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_header_layout',
 		array(
-			'label'           => __( 'ヘッダーレイアウト', 'lightning-child' ),
+			'label'           => __( 'ヘッダーレイアウト', 'cni-lightning-child' ),
 			'section'         => 'lightning_child_header',
 			'type'            => 'select',
 			'active_callback' => 'lightning_child_is_standard_header_mode',
 			'choices'         => array(
-				'standard' => __( 'ナビゲーション回り込み', 'lightning-child' ),
-				'center'   => __( 'ロゴ・ナビゲーション中央寄せ', 'lightning-child' ),
-				'contact'  => __( 'ヘッダーコンタクトあり（ExUnit連携）', 'lightning-child' ),
-				'widget'   => __( 'ヘッダーウィジェットあり', 'lightning-child' ),
+				'standard' => __( 'ナビゲーション回り込み', 'cni-lightning-child' ),
+				'center'   => __( 'ロゴ・ナビゲーション中央寄せ', 'cni-lightning-child' ),
+				'contact'  => __( 'ヘッダーコンタクトあり（ExUnit連携）', 'cni-lightning-child' ),
+				'widget'   => __( 'ヘッダーウィジェットあり', 'cni-lightning-child' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'lightning_child_header_widget_breakpoint',
+		array(
+			'default'           => 1400,
+			'sanitize_callback' => 'lightning_child_sanitize_header_widget_breakpoint',
+		)
+	);
+
+	$wp_customize->add_control(
+		'lightning_child_header_widget_breakpoint',
+		array(
+			'label'           => __( 'ヘッダーウィジェットを表示する幅', 'cni-lightning-child' ),
+			'description'     => __( '選択した幅より狭い画面では、メニューの崩れを防ぐため右側ウィジェットを非表示にします。991px以下では設定にかかわらず非表示です。', 'cni-lightning-child' ),
+			'section'         => 'lightning_child_header',
+			'type'            => 'select',
+			'active_callback' => 'lightning_child_is_widget_header_layout',
+			'choices'         => array(
+				992  => __( '992px以上（広く表示）', 'cni-lightning-child' ),
+				1200 => __( '1200px以上（標準）', 'cni-lightning-child' ),
+				1400 => __( '1400px以上（長いメニュー向け）', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -157,15 +204,15 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_header_logo_display',
 		array(
-			'label'           => __( 'PCヘッダーロゴの表示', 'lightning-child' ),
-			'description'     => __( '「ファーストビューだけ非表示」では、スクロール後の表示は下の固定ヘッダー設定に従います。', 'lightning-child' ),
+			'label'           => __( 'PCヘッダーロゴの表示', 'cni-lightning-child' ),
+			'description'     => __( '「ファーストビューだけ非表示」では、スクロール後の表示は下の固定ヘッダー設定に従います。', 'cni-lightning-child' ),
 			'section'         => 'lightning_child_header',
 			'type'            => 'radio',
 			'active_callback' => 'lightning_child_is_standard_header_mode',
 			'choices'         => array(
-				'always'            => __( '常に表示する', 'lightning-child' ),
-				'first-view-hidden' => __( 'ファーストビューだけ非表示', 'lightning-child' ),
-				'hidden'            => __( 'PCでは常に非表示', 'lightning-child' ),
+				'always'            => __( '常に表示する', 'cni-lightning-child' ),
+				'first-view-hidden' => __( 'ファーストビューだけ非表示', 'cni-lightning-child' ),
+				'hidden'            => __( 'PCでは常に非表示', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -180,8 +227,8 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_mobile_logo_hidden',
 		array(
-			'label'           => __( 'モバイルのヘッダーロゴを非表示にする', 'lightning-child' ),
-			'description'     => __( '非表示でもLightningのハンバーガーボタンを配置できる高さは残します。', 'lightning-child' ),
+			'label'           => __( 'モバイルのヘッダーロゴを非表示にする', 'cni-lightning-child' ),
+			'description'     => __( '非表示でもLightningのハンバーガーボタンを配置できる高さは残します。', 'cni-lightning-child' ),
 			'section'         => 'lightning_child_header',
 			'type'            => 'checkbox',
 			'active_callback' => 'lightning_child_is_standard_header_mode',
@@ -198,41 +245,41 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_header_contact_source',
 		array(
-			'label'           => __( 'ヘッダーコンタクトの取得元', 'lightning-child' ),
-			'description'     => __( 'ExUnitを使用しない案件では「この画面で入力」を選択してください。', 'lightning-child' ),
+			'label'           => __( 'ヘッダーコンタクトの取得元', 'cni-lightning-child' ),
+			'description'     => __( 'ExUnitを使用しない案件では「この画面で入力」を選択してください。', 'cni-lightning-child' ),
 			'section'         => 'lightning_child_header',
 			'type'            => 'radio',
 			'active_callback' => 'lightning_child_is_contact_header_layout',
 			'choices'         => array(
-				'exunit' => __( 'ExUnitの連絡先情報', 'lightning-child' ),
-				'custom' => __( 'この画面で入力', 'lightning-child' ),
+				'exunit' => __( 'ExUnitの連絡先情報', 'cni-lightning-child' ),
+				'custom' => __( 'この画面で入力', 'cni-lightning-child' ),
 			),
 		)
 	);
 
 	$contact_text_settings = array(
 		'lightning_child_header_contact_catch' => array(
-			'label'    => __( '案内文', 'lightning-child' ),
+			'label'    => __( '案内文', 'cni-lightning-child' ),
 			'sanitize' => 'sanitize_text_field',
 			'type'     => 'text',
 		),
 		'lightning_child_header_contact_phone' => array(
-			'label'    => __( '電話番号', 'lightning-child' ),
+			'label'    => __( '電話番号', 'cni-lightning-child' ),
 			'sanitize' => 'sanitize_text_field',
 			'type'     => 'text',
 		),
 		'lightning_child_header_contact_time' => array(
-			'label'    => __( '受付時間', 'lightning-child' ),
+			'label'    => __( '受付時間', 'cni-lightning-child' ),
 			'sanitize' => 'sanitize_textarea_field',
 			'type'     => 'textarea',
 		),
 		'lightning_child_header_contact_url' => array(
-			'label'    => __( 'お問い合わせURL', 'lightning-child' ),
+			'label'    => __( 'お問い合わせURL', 'cni-lightning-child' ),
 			'sanitize' => 'esc_url_raw',
 			'type'     => 'text',
 		),
 		'lightning_child_header_contact_button_text' => array(
-			'label'    => __( 'お問い合わせボタンの文字', 'lightning-child' ),
+			'label'    => __( 'お問い合わせボタンの文字', 'cni-lightning-child' ),
 			'sanitize' => 'sanitize_text_field',
 			'type'     => 'text',
 		),
@@ -267,7 +314,7 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_header_contact_new_window',
 		array(
-			'label'           => __( 'お問い合わせを新しいウィンドウで開く', 'lightning-child' ),
+			'label'           => __( 'お問い合わせを新しいウィンドウで開く', 'cni-lightning-child' ),
 			'section'         => 'lightning_child_header',
 			'type'            => 'checkbox',
 			'active_callback' => 'lightning_child_is_custom_header_contact_source',
@@ -284,17 +331,17 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_header_scroll_layout',
 		array(
-			'label'           => __( 'グローバルナビ スクロール時のレイアウト', 'lightning-child' ),
-			'description'     => __( '変更後に表示が切り替わらない場合は、一度保存してプレビューを再読み込みしてください。', 'lightning-child' ),
+			'label'           => __( 'グローバルナビ スクロール時のレイアウト', 'cni-lightning-child' ),
+			'description'     => __( '変更後に表示が切り替わらない場合は、一度保存してプレビューを再読み込みしてください。', 'cni-lightning-child' ),
 			'section'         => 'lightning_child_header',
 			'type'            => 'select',
 			'active_callback' => 'lightning_child_is_standard_header_mode',
 			'choices'         => array(
-				'nav-only'      => __( 'ナビゲーションのみ固定（Lightning標準）', 'lightning-child' ),
-				'nav-center'    => __( '固定ナビ中央寄せ', 'lightning-child' ),
-				'nav-container' => __( '固定ナビコンテナ幅', 'lightning-child' ),
-				'logo-nav'      => __( '固定 ロゴ＆ナビ回り込み', 'lightning-child' ),
-				'none'          => __( '固定しない', 'lightning-child' ),
+				'nav-only'      => __( 'ナビゲーションのみ固定（Lightning標準）', 'cni-lightning-child' ),
+				'nav-center'    => __( '固定ナビ中央寄せ', 'cni-lightning-child' ),
+				'nav-container' => __( '固定ナビコンテナ幅', 'cni-lightning-child' ),
+				'logo-nav'      => __( '固定 ロゴ＆ナビ回り込み', 'cni-lightning-child' ),
+				'none'          => __( '固定しない', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -311,8 +358,8 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 			$wp_customize,
 			'lightning_child_header_scrolled_logo',
 			array(
-				'label'       => __( 'スクロール時のロゴ', 'lightning-child' ),
-				'description' => __( '「固定 ロゴ＆ナビ回り込み」選択時に使用します。未設定の場合は通常のヘッダーロゴを使用します。同じ縦横比の画像を推奨します。', 'lightning-child' ),
+				'label'       => __( 'スクロール時のロゴ', 'cni-lightning-child' ),
+				'description' => __( '「固定 ロゴ＆ナビ回り込み」選択時に使用します。未設定の場合は通常のヘッダーロゴを使用します。同じ縦横比の画像を推奨します。', 'cni-lightning-child' ),
 				'section'     => 'lightning_child_header',
 				'mime_type'   => 'image',
 			)
@@ -321,23 +368,23 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 
 	$color_settings = array(
 		'lightning_child_header_background_color'          => array(
-			'label'   => __( '背景色', 'lightning-child' ),
+			'label'   => __( '背景色', 'cni-lightning-child' ),
 			'default' => '#ffffff',
 		),
 		'lightning_child_header_text_color'                => array(
-			'label'   => __( '文字色', 'lightning-child' ),
+			'label'   => __( '文字色', 'cni-lightning-child' ),
 			'default' => '#333333',
 		),
 		'lightning_child_header_transparent_text_color'    => array(
-			'label'   => __( '透過時の文字色', 'lightning-child' ),
+			'label'   => __( '透過時の文字色', 'cni-lightning-child' ),
 			'default' => '#ffffff',
 		),
 		'lightning_child_header_transparent_background_color' => array(
-			'label'   => __( '透過時の背景色', 'lightning-child' ),
+			'label'   => __( '透過時の背景色', 'cni-lightning-child' ),
 			'default' => '#ffffff',
 		),
 		'lightning_child_header_scrolled_background_color' => array(
-			'label'   => __( 'スクロール後の背景色', 'lightning-child' ),
+			'label'   => __( 'スクロール後の背景色', 'cni-lightning-child' ),
 			'default' => '#ffffff',
 		),
 	);
@@ -374,8 +421,8 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_header_transparent_front_page',
 		array(
-			'label'       => __( 'トップページでヘッダーを透過する', 'lightning-child' ),
-			'description' => __( '先頭の画像や背景の上へヘッダーを重ねます。PCとモバイルの両方で確認してください。', 'lightning-child' ),
+			'label'       => __( 'トップページでヘッダーを透過する', 'cni-lightning-child' ),
+			'description' => __( '先頭の画像や背景の上へヘッダーを重ねます。PCとモバイルの両方で確認してください。', 'cni-lightning-child' ),
 			'section'     => 'lightning_child_header',
 			'type'        => 'checkbox',
 		)
@@ -391,8 +438,8 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_header_transparent_opacity',
 		array(
-			'label'       => __( '透過時のヘッダー背景濃度', 'lightning-child' ),
-			'description' => __( '0では背景色が完全透明になります。色を見せる場合は0.1〜1を指定してください。', 'lightning-child' ),
+			'label'       => __( '透過時のヘッダー背景濃度', 'cni-lightning-child' ),
+			'description' => __( '0では背景色が完全透明になります。色を見せる場合は0.1〜1を指定してください。', 'cni-lightning-child' ),
 			'section'     => 'lightning_child_header',
 			'type'        => 'number',
 			'input_attrs' => array(
@@ -413,8 +460,8 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_header_transparent_gradient',
 		array(
-			'label'       => __( '透過背景をグラデーションにする', 'lightning-child' ),
-			'description' => __( '画面幅992px以上でのみ適用します。', 'lightning-child' ),
+			'label'       => __( '透過背景をグラデーションにする', 'cni-lightning-child' ),
+			'description' => __( '画面幅992px以上でのみ適用します。', 'cni-lightning-child' ),
 			'section'     => 'lightning_child_header',
 			'type'        => 'checkbox',
 		)
@@ -432,8 +479,8 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 			$wp_customize,
 			'lightning_child_header_transparent_logo',
 			array(
-				'label'       => __( '透過時のヘッダーロゴ画像', 'lightning-child' ),
-				'description' => __( '未設定の場合は通常のヘッダーロゴを使用します。同じ縦横比の画像を推奨します。', 'lightning-child' ),
+				'label'       => __( '透過時のヘッダーロゴ画像', 'cni-lightning-child' ),
+				'description' => __( '未設定の場合は通常のヘッダーロゴを使用します。同じ縦横比の画像を推奨します。', 'cni-lightning-child' ),
 				'section'     => 'lightning_child_header',
 				'mime_type'   => 'image',
 			)
@@ -451,14 +498,14 @@ function lightning_child_customize_header_settings( $wp_customize ) {
 	$wp_customize->add_control(
 		'lightning_child_mobile_logo_position',
 		array(
-			'label'           => __( 'モバイルのロゴ位置', 'lightning-child' ),
+			'label'           => __( 'モバイルのロゴ位置', 'cni-lightning-child' ),
 			'section'         => 'lightning_child_header',
 			'type'            => 'select',
 			'active_callback' => 'lightning_child_is_standard_header_mode',
 			'choices'         => array(
-				'left'   => __( '左', 'lightning-child' ),
-				'center' => __( '中央', 'lightning-child' ),
-				'right'  => __( '右', 'lightning-child' ),
+				'left'   => __( '左', 'cni-lightning-child' ),
+				'center' => __( '中央', 'cni-lightning-child' ),
+				'right'  => __( '右', 'cni-lightning-child' ),
 			),
 		)
 	);
@@ -495,6 +542,9 @@ function lightning_child_add_header_color_css() {
 	$mobile_menu_close_url      = esc_url_raw( $mobile_nav_asset_url . 'vk-menu-close-' . $transparent_icon_tone . '.svg' );
 	$transparent_rgba           = lightning_child_header_rgba( $transparent_background, $transparent_opacity );
 	$transparent_clear          = lightning_child_header_rgba( $transparent_background, 0 );
+	$widget_breakpoint          = lightning_child_sanitize_header_widget_breakpoint(
+		get_theme_mod( 'lightning_child_header_widget_breakpoint', 1400 )
+	);
 	$css                       = sprintf(
 		':root{--lightning-child-header-background:%1$s;--lightning-child-header-text:%2$s;--lightning-child-header-transparent-text:%3$s;--lightning-child-header-scrolled-background:%4$s;--lightning-child-mobile-menu-button-light:url("%5$s");--lightning-child-mobile-menu-close-light:url("%6$s");--lightning-child-header-transparent-background:%7$s;--lightning-child-header-transparent-clear:%8$s;}',
 		$background_color,
@@ -506,6 +556,13 @@ function lightning_child_add_header_color_css() {
 		$transparent_rgba,
 		$transparent_clear
 	);
+
+	if ( 992 < $widget_breakpoint ) {
+		$css .= sprintf(
+			'@media (min-width:992px) and (max-width:%1$s){.lightning-child-header-widget .lightning-child-header-widget-area{display:none;}}',
+			number_format( $widget_breakpoint - 0.02, 2, '.', '' ) . 'px'
+		);
+	}
 
 	wp_add_inline_style( 'lightning-theme-style', $css );
 }
@@ -629,9 +686,9 @@ add_filter( 'body_class', 'lightning_child_add_header_body_classes' );
 function lightning_child_register_header_widget_area() {
 	register_sidebar(
 		array(
-			'name'          => __( 'ヘッダーウィジェット', 'lightning-child' ),
+			'name'          => __( 'ヘッダーウィジェット', 'cni-lightning-child' ),
 			'id'            => 'lightning-child-header-widget',
-			'description'   => __( '「ヘッダーウィジェットあり」レイアウトで、PCヘッダー右側に表示します。', 'lightning-child' ),
+			'description'   => __( '「ヘッダーウィジェットあり」レイアウトで、PCヘッダー右側に表示します。', 'cni-lightning-child' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -739,7 +796,7 @@ function lightning_child_render_header_extra() {
 	if ( '' === $button_text && isset( $options['button_text'] ) ) {
 		$button_text = sanitize_text_field( $options['button_text'] );
 	}
-	$button_text = $button_text ? $button_text : __( 'お問い合わせ', 'lightning-child' );
+	$button_text = $button_text ? $button_text : __( 'お問い合わせ', 'cni-lightning-child' );
 	$tel_href    = preg_replace( '/[^0-9+]/', '', $telephone );
 	$new_window  = ! empty( $options['contact_target_blank'] );
 
